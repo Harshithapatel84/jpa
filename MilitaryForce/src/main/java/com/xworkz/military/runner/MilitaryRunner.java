@@ -1,4 +1,4 @@
-package com.xworkz.military.runner;
+ package com.xworkz.military.runner;
 
 import com.xworkz.military.dto.MilitaryDTO;
 import com.xworkz.military.service.MilitaryService;
@@ -11,16 +11,54 @@ public class MilitaryRunner {
 
     public static void main(String[] args) {
 
-        MilitaryService militaryService = new MilitaryServiceImpl();
+        MilitaryService service = new MilitaryServiceImpl();
 
-        List<MilitaryDTO> militaryDTOList = new ArrayList<>();
 
-        militaryDTOList.add(new MilitaryDTO("Arjun", "Captain", 32));
-        militaryDTOList.add(new MilitaryDTO("Rahul", "Major", 35));
-        militaryDTOList.add(new MilitaryDTO("Priya", "Lieutenant", 28));
+        List<MilitaryDTO> militaryDTOs = new ArrayList<MilitaryDTO>();
 
-        String saved = militaryService.saveAll(militaryDTOList);
+        militaryDTOs.add(new MilitaryDTO("Arjun", "Captain", 30));
+        militaryDTOs.add(new MilitaryDTO("Ravi", "Major", 35));
+        militaryDTOs.add(new MilitaryDTO("Kiran", "Captain", 28));
 
-        System.out.println(saved);
+
+        //String saved = service.saveAll(militaryDTOs);
+        //System.out.println(saved);
+
+
+        MilitaryDTO getById = service.getById(1);
+        System.out.println(getById);
+
+
+        List<MilitaryDTO> readAll = service.readAllMilitaryDto();
+        System.out.println(readAll);
+
+
+        List<MilitaryDTO> getByName = service.getMilitaryByName("Arjun");
+        System.out.println(getByName);
+
+
+        List<MilitaryDTO> getByRank = service.getMilitaryByRank("Captain");
+        System.out.println(getByRank);
+
+
+        List<MilitaryDTO> getByAge = service.getMilitaryByAge(30);
+        System.out.println(getByAge);
+
+
+        List<MilitaryDTO> getByNameAndRank = service.getMilitaryByNameAndRank("Arjun", "Captain");
+        System.out.println(getByNameAndRank);
+
+
+        List<MilitaryDTO> getByAgeGreaterThan = service.getMilitaryByAgeGreaterThan(28);
+        System.out.println(getByAgeGreaterThan);
+
+
+        List<MilitaryDTO> getByAgeLessThan = service.getMilitaryByAgeLessThan(35);
+        System.out.println(getByAgeLessThan);
+
+
+        List<MilitaryDTO> getByRankAndAge = service.getMilitaryByRankAndAge("Captain", 30);
+        System.out.println(getByRankAndAge);
     }
 }
+

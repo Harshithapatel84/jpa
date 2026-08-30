@@ -7,8 +7,6 @@
             <property name="javax.persistence.jdbc.password" value="root"></property>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-
-
         </properties>
     </persistence-unit>
 </persistence>
