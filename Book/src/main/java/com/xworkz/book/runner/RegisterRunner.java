@@ -1,4 +1,4 @@
-package com.xworkz.book.runner;
+ package com.xworkz.book.runner;
 
 import com.xworkz.book.dto.RegisterDTO;
 import com.xworkz.book.service.RegisterService;
@@ -11,27 +11,55 @@ public class RegisterRunner {
 
     public static void main(String[] args) {
 
-        RegisterDTO dto = new RegisterDTO(null, "Java", "James Gosling");
-
+        RegisterDTO registerDTO = new RegisterDTO(4,"Java", "James Gosling");
         RegisterService service = new RegisterServiceImpl();
 
-        boolean isSaved = service.save(dto);
-        System.out.println("Book saved: " + isSaved);
+        //String isSaved = service.save(registerDTO);
+        //System.out.println(isSaved);
 
 
-        List<RegisterDTO> registerDTOList = new ArrayList<>();
+        List<RegisterDTO> registerDTOS = new ArrayList<RegisterDTO>();
 
-        registerDTOList.add(new RegisterDTO(null, "Python", "Guido van Rossum"));
+        registerDTOS.add(new RegisterDTO(8,"Java", "James Gosling"));
+        registerDTOS.add(new RegisterDTO(7,"Python", "Guido van Rossum"));
+        registerDTOS.add(new RegisterDTO(6,"C++", "Bjarne Stroustrup"));
 
-        registerDTOList.add(new RegisterDTO(null, "C Programming", "Dennis Ritchie"));
+        //String saved = service.saveAll(registerDTOS);
+        //System.out.println(saved);
 
-        registerDTOList.add(new RegisterDTO(null, "Clean Code", "Robert C. Martin"));
+
+        RegisterDTO getById = service.getById(1);
+        System.out.println(getById);
 
 
-        String saved = service.saveAll(registerDTOList);
-        System.out.println(saved);
+        List<RegisterDTO> readAll = service.readAllRegisterDto();
+        System.out.println(readAll);
 
-        RegisterDTO dtoById = service.findById(1);
-        System.out.println("Found Dto is: " + dtoById);
+
+        List<RegisterDTO> getByBookName = service.getRegisterByBookName("Java");
+        System.out.println(getByBookName);
+
+
+        List<RegisterDTO> getByBookAuthor = service.getRegisterByBookAuthor("James Gosling");
+        System.out.println(getByBookAuthor);
+
+
+        List<RegisterDTO> getByBookId = service.getRegisterByBookId(1);
+        System.out.println(getByBookId);
+
+
+        List<RegisterDTO> getByBookNameAndAuthor = service.getRegisterByBookNameAndAuthor("Java", "James Gosling");
+        System.out.println(getByBookNameAndAuthor);
+
+
+        List<RegisterDTO> getByBookIdGreaterThan = service.getRegisterByBookIdGreaterThan(1);
+        System.out.println(getByBookIdGreaterThan);
+
+        List<RegisterDTO> getByBookIdLessThan = service.getRegisterByBookIdLessThan(5);
+        System.out.println(getByBookIdLessThan);
+
+        List<RegisterDTO> getByAuthorAndBookId = service.getRegisterByAuthorAndBookId("James Gosling", 1);
+        System.out.println(getByAuthorAndBookId);
+
     }
 }
