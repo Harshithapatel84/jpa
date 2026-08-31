@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SignupDAOImpl implements SignupDAO {
     @Override
-    public boolean save(SignupEntity entity) {
+    public Boolean save(SignupEntity entity) {
         System.out.println("invoking save signupImpl");
         EntityManagerFactory emf = null;
         EntityManager em = null;
@@ -81,6 +81,11 @@ public class SignupDAOImpl implements SignupDAO {
     }
 
     @Override
+    public SignupEntity getById(Integer id) {
+        return null;
+    }
+
+
     public SignupEntity getByid(Integer id) {
         System.out.println("Invoking getSignupEntityById: SignupDAOImpl");
 
@@ -151,91 +156,45 @@ e.printStackTrace();
 
     @Override
     public List<SignupEntity> getSignupByPassword(String password) {
-        System.out.println("invoking getSignupByPassword : SignupDaoImpl");
-
-        List<SignupEntity> signupEntityList = Collections.emptyList();
-
-        try {
-
-            signupEntityList = Persistence
-                    .createEntityManagerFactory("cloud")
-                    .createEntityManager()
-                    .createNamedQuery("getSignupByPassword")
-                    .setParameter("password", password)
-                    .getResultList();
-
-            System.out.println("listOfEntity:" + signupEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return signupEntityList;
+        return Collections.emptyList();
     }
 
     @Override
     public List<SignupEntity> getSignupByEmail(String email) {
-        System.out.println("invoking getSignupByEmail : SignupDaoImpl");
-
-        List<SignupEntity> signupEntityList = Collections.emptyList();
-
-        try {
-
-            signupEntityList = Persistence
-                    .createEntityManagerFactory("cloud")
-                    .createEntityManager()
-                    .createNamedQuery("getSignupByEmail")
-                    .setParameter("email", email)
-                    .getResultList();
-
-            System.out.println("listOfEntity:" + signupEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return signupEntityList;
+        return Collections.emptyList();
     }
 
     @Override
-    public List<SignupEntity> getSignupByPasswordAndEmail(
-            String password, String email) {
-
-        System.out.println(
-                "invoking getSignupByPasswordAndEmail : SignupDaoImpl");
-
-        List<SignupEntity> signupEntityList = Collections.emptyList();
-
-        try {
-
-            signupEntityList = Persistence
-                    .createEntityManagerFactory("cloud")
-                    .createEntityManager()
-                    .createNamedQuery("getSignupByPasswordAndEmail")
-                    .setParameter("password", password)
-                    .setParameter("email", email)
-                    .getResultList();
-
-            System.out.println("listOfEntity:" + signupEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return signupEntityList;
+    public List<SignupEntity> getSignupByPasswordAndEmail(String password, String email) {
+        return Collections.emptyList();
     }
+
+    @Override
+    public boolean updatePasswordById(int id, String password) {
+        return false;
+    }
+
+    @Override
+    public boolean updateEmailById(int id, String email) {
+        return false;
+    }
+
+    @Override
+    public boolean updateConfirmPasswordById(int id, String confirmPassword) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteSignupById(int id) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteSignupByEmail(String email) {
+        return false;
+    }
+
+
 }
 
 

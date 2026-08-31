@@ -14,31 +14,29 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "grocery_info")
 
-@NamedQuery(name = "getAllGroceryEntity",
-        query = "select r from GroceryEntity r")
+@NamedQueries({
 
-@NamedQuery(name = "getGroceryByName",
-        query = "select r from GroceryEntity r where r.name = :name")
+        @NamedQuery(name = "getallgroceryentity", query = "select r from GroceryEntity r"),
 
-@NamedQuery(name = "getGroceryByBrand",
-        query = "select r from GroceryEntity r where r.brand = :brand")
+        @NamedQuery(name = "getgrocerybyname", query = "select r from GroceryEntity r where r.name = :name"),
 
-@NamedQuery(name = "getGroceryByPrice",
-        query = "select r from GroceryEntity r where r.price = :price")
+        @NamedQuery(name = "getgrocerybybrand", query = "select r from GroceryEntity r where r.brand = :brand"),
 
-@NamedQuery(
-        name = "getGroceryByNameAndBrand",
-        query = "select r from GroceryEntity r where r.name = :name and r.brand = :brand"
-)
+        @NamedQuery(name = "getgrocerybynameandbrand", query = "select r from GroceryEntity r where r.name = :name and r.brand = :brand"),
 
-@NamedQuery(name = "getGroceryByPriceGreaterThan",
-        query = "select r from GroceryEntity r where r.price > :price")
+        @NamedQuery(name = "getgrocerybybrandorprice", query = "select r from GroceryEntity r where r.brand = :brand or r.price = :price"),
 
-@NamedQuery(name = "getGroceryByPriceLessThan",
-        query = "select r from GroceryEntity r where r.price < :price")
+        @NamedQuery(name = "updatepricebyname", query = "update GroceryEntity r set r.price = :price where r.name = :name"),
 
-@NamedQuery(name = "getGroceryByBrandAndPrice",
-        query = "select r from GroceryEntity r where r.brand = :brand and r.price = :price")
+        @NamedQuery(name = "updatebrandbyname", query = "update GroceryEntity r set r.brand = :brand where r.name = :name"),
+
+        @NamedQuery(name = "updatepricebybrandandname", query = "update GroceryEntity r set r.price = :price where r.brand = :brand and r.name = :name"),
+
+        @NamedQuery(name = "deletegrocerybyname", query = "delete from GroceryEntity r where r.name = :name"),
+
+        @NamedQuery(name = "deletegrocerybybrandorprice", query = "delete from GroceryEntity r where r.brand = :brand or r.price = :price")
+
+})
 
 public class GroceryEntity {
 

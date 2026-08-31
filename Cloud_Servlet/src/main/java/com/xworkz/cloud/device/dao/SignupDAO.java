@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface SignupDAO {
 
-    boolean save(SignupEntity signupEntity);
+ Boolean save(SignupEntity signupEntity);
 
-Boolean saveAll(List<SignupEntity> list);
+ Boolean saveAll(List<SignupEntity> list);
 
- SignupEntity getByid(Integer id);
+ SignupEntity getById(Integer id);
 
  List<SignupEntity> readAllSignupEntity();
 
@@ -22,4 +22,13 @@ Boolean saveAll(List<SignupEntity> list);
 
  List<SignupEntity> getSignupByPasswordAndEmail(String password, String email);
 
+ boolean updatePasswordById(int id, String password);
+
+ boolean updateEmailById(int id, String email);
+
+ boolean updateConfirmPasswordById(int id, String confirmPassword);
+
+ boolean deleteSignupById(int id);
+
+ boolean deleteSignupByEmail(String email);
 }

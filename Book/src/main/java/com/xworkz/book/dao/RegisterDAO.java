@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface RegisterDAO {
 
+
     Boolean save(RegisterEntity entity);
 
     Boolean saveAll(List<RegisterEntity> registerEntityList);
@@ -18,19 +19,19 @@ public interface RegisterDAO {
 
     List<RegisterEntity> getRegisterByBookAuthor(String bookAuthor);
 
-    List<RegisterEntity> getRegisterByBookId(Integer bookId);
+    List<RegisterEntity> getRegisterByBookNameAndAuthor(String bookName, String bookAuthor);
 
-    List<RegisterEntity> getRegisterByBookNameAndAuthor(
-            String bookName, String bookAuthor);
+    List<RegisterEntity> getRegisterByAuthorOrBookId(String bookAuthor, Integer bookId);
 
-    List<RegisterEntity> getRegisterByBookIdGreaterThan(
-            Integer bookId);
+    boolean updateBookNameById(String bookName, Integer bookId);
 
-    List<RegisterEntity> getRegisterByBookIdLessThan(
-            Integer bookId);
+    boolean updateBookAuthorById(String bookAuthor, Integer bookId);
 
-    List<RegisterEntity> getRegisterByAuthorAndBookId(
-            String bookAuthor, Integer bookId);
+    boolean updateBookAuthorByNameAndBookId(String bookAuthor, String bookName, Integer bookId);
+
+    boolean deleteRegisterByBookId(Integer bookId);
+
+    boolean deleteRegisterByAuthorOrBookName(String bookAuthor, String bookName);
+
 
 }
-

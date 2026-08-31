@@ -1,4 +1,4 @@
-package com.xworkz.bank.gpay.runner;
+ package com.xworkz.bank.gpay.runner;
 
 import com.xworkz.bank.gpay.dto.PaymentDTO;
 import com.xworkz.bank.gpay.service.PaymentService;
@@ -11,16 +11,44 @@ public class PaymentRunner {
 
     public static void main(String[] args) {
 
+        PaymentDTO paymentDTO = new PaymentDTO(8,"Harshitha", 500.0);
+
         PaymentService service = new PaymentServiceImpl();
 
-        List<PaymentDTO> paymentDTOList = new ArrayList<>();
 
-        paymentDTOList.add(new PaymentDTO(1,"Harshitha", 500.0));
-        paymentDTOList.add(new PaymentDTO(2,"Rahul", 1000.0));
-        paymentDTOList.add(new PaymentDTO(3,"Priya", 750.0));
+        //boolean isSaved = service.save(paymentDTO);
+        //System.out.println(isSaved);
 
-        String saved = service.saveAll(paymentDTOList);
 
-        System.out.println(saved);
+        List<PaymentDTO> paymentDTOList = new ArrayList<PaymentDTO>();
+
+        paymentDTOList.add(new PaymentDTO(5,"Harshitha", 500.0));
+
+        paymentDTOList.add(new PaymentDTO(6,"Anu", 1000.0));
+
+        paymentDTOList.add(new PaymentDTO(7,"Kiran", 2500.0));
+
+        paymentDTOList.add(new PaymentDTO(8,"Harsha", 1500.0));
+
+        paymentDTOList.add(new PaymentDTO(9,"Ravi", 3000.0));
+
+
+        //Boolean saved = service.saveAll(paymentDTOList);
+        //System.out.println(saved);
+
+
+        PaymentDTO getByIds = service.getById(1);
+        System.out.println(getByIds);
+
+        List<PaymentDTO> readAll = service.readAllPaymentDto();
+        System.out.println(readAll);
+
+
+        List<PaymentDTO> getById = service.getPaymentById(2);
+        System.out.println(getById);
+
+
+
     }
 }
+

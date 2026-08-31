@@ -13,23 +13,6 @@ public interface MilitaryService {
 
     List<MilitaryDTO> readAllMilitaryDto();
 
-    List<MilitaryDTO> getMilitaryByName(String name);
-
-    List<MilitaryDTO> getMilitaryByRank(String rank);
-
-    List<MilitaryDTO> getMilitaryByAge(Integer age);
-
-    List<MilitaryDTO> getMilitaryByNameAndRank(
-            String name, String rank);
-
-    List<MilitaryDTO> getMilitaryByAgeGreaterThan(
-            Integer age);
-
-    List<MilitaryDTO> getMilitaryByAgeLessThan(
-            Integer age);
-
-    List<MilitaryDTO> getMilitaryByRankAndAge(
-            String rank, Integer age);
 
 }
 

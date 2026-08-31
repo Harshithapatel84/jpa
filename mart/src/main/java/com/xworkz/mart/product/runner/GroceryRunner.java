@@ -46,28 +46,6 @@ public class GroceryRunner {
         System.out.println(getByGroceryName);
 
 
-        List<GroceryDTO> getByBrand = service.getGroceryByBrand("Fortune");
-        System.out.println(getByBrand);
-
-
-        List<GroceryDTO> getByPrice = service.getGroceryByPrice(60.0);
-        System.out.println(getByPrice);
-
-
-        List<GroceryDTO> getByNameAndBrand = service.getGroceryByNameAndBrand("Rice", "India Gate");
-        System.out.println(getByNameAndBrand);
-
-
-        List<GroceryDTO> getByPriceGreaterThan = service.getGroceryByPriceGreaterThan(50.0);
-        System.out.println(getByPriceGreaterThan);
-
-
-        List<GroceryDTO> getByPriceLessThan = service.getGroceryByPriceLessThan(100.0);
-        System.out.println(getByPriceLessThan);
-
-
-        List<GroceryDTO> getByBrandAndPrice = service.getGroceryByBrandAndPrice("India Gate", 60.0);
-        System.out.println(getByBrandAndPrice);
 
     }
 }

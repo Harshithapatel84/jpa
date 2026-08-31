@@ -17,17 +17,6 @@ public interface RegisterService {
 
     List<RegisterDTO> getRegisterByBookName(String bookName);
 
-    List<RegisterDTO> getRegisterByBookAuthor(String bookAuthor);
-
-    List<RegisterDTO> getRegisterByBookId(Integer bookId);
-
-    List<RegisterDTO> getRegisterByBookNameAndAuthor(String bookName, String bookAuthor);
-
-    List<RegisterDTO> getRegisterByBookIdGreaterThan(Integer bookId);
-
-    List<RegisterDTO> getRegisterByBookIdLessThan(Integer bookId);
-
-    List<RegisterDTO> getRegisterByAuthorAndBookId(String bookAuthor, Integer bookId);
 
 }
 

@@ -240,178 +240,40 @@ public class GroceryDaoImpl implements GroceryDAO {
         return groceryEntityList;
     }
 
-
     @Override
-    public List<GroceryEntity> getGroceryByPrice(Double price) {
-
-        System.out.println(
-                "invoking getGroceryByPrice : GroceryDaoImpl");
-
-        List<GroceryEntity> groceryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            groceryEntityList = Persistence
-                    .createEntityManagerFactory("mart")
-                    .createEntityManager()
-                    .createNamedQuery("getGroceryByPrice")
-                    .setParameter("price", price)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + groceryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return groceryEntityList;
+    public List<GroceryEntity> getGroceryByNameAndBrand(String name, String brand) {
+        return Collections.emptyList();
     }
 
-
     @Override
-    public List<GroceryEntity> getGroceryByNameAndBrand(
-            String name, String brand) {
-
-        System.out.println(
-                "invoking getGroceryByNameAndBrand : GroceryDaoImpl");
-
-        List<GroceryEntity> groceryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            groceryEntityList = Persistence
-                    .createEntityManagerFactory("mart")
-                    .createEntityManager()
-                    .createNamedQuery("getGroceryByNameAndBrand")
-                    .setParameter("name", name)
-                    .setParameter("brand", brand)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + groceryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return groceryEntityList;
+    public List<GroceryEntity> getGroceryByBrandOrPrice(String brand, Double price) {
+        return Collections.emptyList();
     }
 
-
     @Override
-    public List<GroceryEntity> getGroceryByPriceGreaterThan(
-            Double price) {
-
-        System.out.println(
-                "invoking getGroceryByPriceGreaterThan : GroceryDaoImpl");
-
-        List<GroceryEntity> groceryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            groceryEntityList = Persistence
-                    .createEntityManagerFactory("mart")
-                    .createEntityManager()
-                    .createNamedQuery(
-                            "getGroceryByPriceGreaterThan")
-                    .setParameter("price", price)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + groceryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return groceryEntityList;
+    public boolean updatePriceByName(Double price, String name) {
+        return false;
     }
 
-
     @Override
-    public List<GroceryEntity> getGroceryByPriceLessThan(
-            Double price) {
-
-        System.out.println(
-                "invoking getGroceryByPriceLessThan : GroceryDaoImpl");
-
-        List<GroceryEntity> groceryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            groceryEntityList = Persistence
-                    .createEntityManagerFactory("mart")
-                    .createEntityManager()
-                    .createNamedQuery(
-                            "getGroceryByPriceLessThan")
-                    .setParameter("price", price)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + groceryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return groceryEntityList;
+    public boolean updateBrandByName(String brand, String name) {
+        return false;
     }
 
+    @Override
+    public boolean updatePriceByBrandAndName(Double price, String brand, String name) {
+        return false;
+    }
 
     @Override
-    public List<GroceryEntity> getGroceryByBrandAndPrice(
-            String brand, Double price) {
-
-        System.out.println(
-                "invoking getGroceryByBrandAndPrice : GroceryDaoImpl");
-
-        List<GroceryEntity> groceryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            groceryEntityList = Persistence
-                    .createEntityManagerFactory("mart")
-                    .createEntityManager()
-                    .createNamedQuery(
-                            "getGroceryByBrandAndPrice")
-                    .setParameter("brand", brand)
-                    .setParameter("price", price)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + groceryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return groceryEntityList;
+    public boolean deleteGroceryByName(String name) {
+        return false;
     }
+
+    @Override
+    public boolean deleteGroceryByBrandOrPrice(String brand, Double price) {
+        return false;
+    }
+
 
 }

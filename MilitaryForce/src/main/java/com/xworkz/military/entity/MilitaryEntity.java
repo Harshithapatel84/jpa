@@ -1,4 +1,4 @@
- package com.xworkz.military.entity;
+package com.xworkz.military.entity;
 
 import lombok.*;
 
@@ -13,21 +13,28 @@ import javax.persistence.*;
 @Entity
 @Table(name = "military")
 
-@NamedQuery(name = "getallmilitaryentity", query = "select r from MilitaryEntity r")
+@NamedQueries({
 
-@NamedQuery(name = "getmilitarybyname", query = "select r from MilitaryEntity r where r.name = :name")
+@NamedQuery(name = "getAllMilitaryEntity", query = "select r from MilitaryEntity r"),
 
-@NamedQuery(name = "getmilitarybyrank", query = "select r from MilitaryEntity r where r.rank = :rank")
+@NamedQuery(name = "getMilitaryByName", query = "select r from MilitaryEntity r where r.name = :name"),
 
-@NamedQuery(name = "getmilitarybyage", query = "select r from MilitaryEntity r where r.age = :age")
+@NamedQuery(name = "getMilitaryByRank", query = "select r from MilitaryEntity r where r.rank = :rank"),
 
-@NamedQuery(name = "getmilitarybynameandrank", query = "select r from MilitaryEntity r where r.name = :name and r.rank = :rank")
+@NamedQuery(name = "getMilitaryByNameAndRank", query = "select r from MilitaryEntity r where r.name = :name and r.rank = :rank"),
 
-@NamedQuery(name = "getmilitarybyagegreaterthan", query = "select r from MilitaryEntity r where r.age > :age")
+@NamedQuery(name = "getMilitaryByRankOrAge", query = "select r from MilitaryEntity r where r.rank = :rank or r.age = :age"),
 
-@NamedQuery(name = "getmilitarybyagelessthan",query = "select r from MilitaryEntity r where r.age < :age")
+@NamedQuery(name = "updateRankByName", query = "update MilitaryEntity r set r.rank = :rank where r.name = :name"),
 
-@NamedQuery(name = "getmilitarybyrankandage", query = "select r from MilitaryEntity r where r.rank = :rank and r.age = :age")
+@NamedQuery(name = "updateAgeByName", query = "update MilitaryEntity r set r.age = :age where r.name = :name"),
+
+@NamedQuery(name = "updateRankByNameAndAge", query = "update MilitaryEntity r set r.rank = :rank where r.name = :name and r.age = :age"),
+
+@NamedQuery(name = "deleteMilitaryByName", query = "delete from MilitaryEntity r where r.name = :name"),
+
+@NamedQuery(name = "deleteMilitaryByRankOrAge", query = "delete from MilitaryEntity r where r.rank = :rank or r.age = :age")
+})
 
 public class MilitaryEntity {
 

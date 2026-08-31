@@ -1,4 +1,4 @@
- package com.xworkz.military.dao;
+package com.xworkz.military.dao;
 
 import com.xworkz.military.entity.MilitaryEntity;
 
@@ -26,5 +26,15 @@ public interface MilitaryDAO {
 
     List<MilitaryEntity> getMilitaryByRankAndAge(String rank, Integer age);
 
-}
+    boolean updateRankByName(String rank, String name);
 
+    boolean updateAgeByName(Integer age, String name);
+
+    boolean updateRankByNameAndAge(String rank, String name, Integer age);
+
+    boolean deleteMilitaryByName(String name);
+
+    boolean deleteMilitaryByRankOrAge(String rank, Integer age);
+
+
+}

@@ -33,32 +33,6 @@ public class MilitaryRunner {
         System.out.println(readAll);
 
 
-        List<MilitaryDTO> getByName = service.getMilitaryByName("Arjun");
-        System.out.println(getByName);
-
-
-        List<MilitaryDTO> getByRank = service.getMilitaryByRank("Captain");
-        System.out.println(getByRank);
-
-
-        List<MilitaryDTO> getByAge = service.getMilitaryByAge(30);
-        System.out.println(getByAge);
-
-
-        List<MilitaryDTO> getByNameAndRank = service.getMilitaryByNameAndRank("Arjun", "Captain");
-        System.out.println(getByNameAndRank);
-
-
-        List<MilitaryDTO> getByAgeGreaterThan = service.getMilitaryByAgeGreaterThan(28);
-        System.out.println(getByAgeGreaterThan);
-
-
-        List<MilitaryDTO> getByAgeLessThan = service.getMilitaryByAgeLessThan(35);
-        System.out.println(getByAgeLessThan);
-
-
-        List<MilitaryDTO> getByRankAndAge = service.getMilitaryByRankAndAge("Captain", 30);
-        System.out.println(getByRankAndAge);
     }
 }
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface GroceryDAO {
 
+
     Boolean save(GroceryEntity grocery);
 
     Boolean saveAll(List<GroceryEntity> groceryEntityList);
@@ -18,15 +19,19 @@ public interface GroceryDAO {
 
     List<GroceryEntity> getGroceryByBrand(String brand);
 
-    List<GroceryEntity> getGroceryByPrice(Double price);
-
     List<GroceryEntity> getGroceryByNameAndBrand(String name, String brand);
 
-    List<GroceryEntity> getGroceryByPriceGreaterThan(Double price);
+    List<GroceryEntity> getGroceryByBrandOrPrice(String brand, Double price);
 
-    List<GroceryEntity> getGroceryByPriceLessThan(Double price);
+    boolean updatePriceByName(Double price, String name);
 
-    List<GroceryEntity> getGroceryByBrandAndPrice(String brand, Double price);
+    boolean updateBrandByName(String brand, String name);
+
+    boolean updatePriceByBrandAndName(Double price, String brand, String name);
+
+    boolean deleteGroceryByName(String name);
+
+    boolean deleteGroceryByBrandOrPrice(String brand, Double price);
 
 
 }

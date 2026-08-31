@@ -128,241 +128,66 @@ public class MilitaryDaoImpl implements MilitaryDAO {
         return militaryEntityList;
     }
 
-
     @Override
     public List<MilitaryEntity> getMilitaryByName(String name) {
-
-        System.out.println(
-                "invoking getMilitaryByName:MilitaryDAOImpl");
-
-        List<MilitaryEntity> militaryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            militaryEntityList = Persistence
-                    .createEntityManagerFactory("military")
-                    .createEntityManager()
-                    .createNamedQuery("getmilitarybyname")
-                    .setParameter("name", name)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + militaryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return militaryEntityList;
+        return Collections.emptyList();
     }
-
 
     @Override
     public List<MilitaryEntity> getMilitaryByRank(String rank) {
-
-        System.out.println(
-                "invoking getMilitaryByRank:MilitaryDAOImpl");
-
-        List<MilitaryEntity> militaryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            militaryEntityList = Persistence
-                    .createEntityManagerFactory("military")
-                    .createEntityManager()
-                    .createNamedQuery("getmilitarybyrank")
-                    .setParameter("rank", rank)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + militaryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return militaryEntityList;
+        return Collections.emptyList();
     }
-
 
     @Override
     public List<MilitaryEntity> getMilitaryByAge(Integer age) {
-
-        System.out.println(
-                "invoking getMilitaryByAge:MilitaryDAOImpl");
-
-        List<MilitaryEntity> militaryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            militaryEntityList = Persistence
-                    .createEntityManagerFactory("military")
-                    .createEntityManager()
-                    .createNamedQuery("getmilitarybyage")
-                    .setParameter("age", age)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + militaryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return militaryEntityList;
+        return Collections.emptyList();
     }
-
 
     @Override
-    public List<MilitaryEntity> getMilitaryByNameAndRank(
-            String name, String rank) {
-
-        System.out.println(
-                "invoking getMilitaryByNameAndRank:MilitaryDAOImpl");
-
-        List<MilitaryEntity> militaryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            militaryEntityList = Persistence
-                    .createEntityManagerFactory("military")
-                    .createEntityManager()
-                    .createNamedQuery("getmilitarybynameandrank")
-                    .setParameter("name", name)
-                    .setParameter("rank", rank)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + militaryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return militaryEntityList;
+    public List<MilitaryEntity> getMilitaryByNameAndRank(String name, String rank) {
+        return Collections.emptyList();
     }
-
 
     @Override
-    public List<MilitaryEntity> getMilitaryByAgeGreaterThan(
-            Integer age) {
-
-        System.out.println(
-                "invoking getMilitaryByAgeGreaterThan:MilitaryDAOImpl");
-
-        List<MilitaryEntity> militaryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            militaryEntityList = Persistence
-                    .createEntityManagerFactory("military")
-                    .createEntityManager()
-                    .createNamedQuery("getmilitarybyagegreaterthan")
-                    .setParameter("age", age)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + militaryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return militaryEntityList;
+    public List<MilitaryEntity> getMilitaryByAgeGreaterThan(Integer age) {
+        return Collections.emptyList();
     }
-
 
     @Override
-    public List<MilitaryEntity> getMilitaryByAgeLessThan(
-            Integer age) {
-
-        System.out.println(
-                "invoking getMilitaryByAgeLessThan:MilitaryDAOImpl");
-
-        List<MilitaryEntity> militaryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            militaryEntityList = Persistence
-                    .createEntityManagerFactory("military")
-                    .createEntityManager()
-                    .createNamedQuery("getmilitarybyagelessthan")
-                    .setParameter("age", age)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + militaryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return militaryEntityList;
+    public List<MilitaryEntity> getMilitaryByAgeLessThan(Integer age) {
+        return Collections.emptyList();
     }
-
 
     @Override
-    public List<MilitaryEntity> getMilitaryByRankAndAge(
-            String rank, Integer age) {
-
-        System.out.println(
-                "invoking getMilitaryByRankAndAge:MilitaryDAOImpl");
-
-        List<MilitaryEntity> militaryEntityList =
-                Collections.emptyList();
-
-        try {
-
-            militaryEntityList = Persistence
-                    .createEntityManagerFactory("military")
-                    .createEntityManager()
-                    .createNamedQuery("getmilitarybyrankandage")
-                    .setParameter("rank", rank)
-                    .setParameter("age", age)
-                    .getResultList();
-
-            System.out.println(
-                    "listOfEntity:" + militaryEntityList);
-
-        } catch (PersistenceException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-        }
-
-        return militaryEntityList;
+    public List<MilitaryEntity> getMilitaryByRankAndAge(String rank, Integer age) {
+        return Collections.emptyList();
     }
+
+    @Override
+    public boolean updateRankByName(String rank, String name) {
+        return false;
+    }
+
+    @Override
+    public boolean updateAgeByName(Integer age, String name) {
+        return false;
+    }
+
+    @Override
+    public boolean updateRankByNameAndAge(String rank, String name, Integer age) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteMilitaryByName(String name) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteMilitaryByRankOrAge(String rank, Integer age) {
+        return false;
+    }
+
+
 }
 
