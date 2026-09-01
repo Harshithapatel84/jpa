@@ -10,8 +10,13 @@ public interface GroceryService {
 
    String saveAll(List<GroceryDTO> dtoList);
 
-   GroceryDTO findByname(String name);
+   List<GroceryDTO> readAllGroceryDto();
 
-    List<GroceryDTO> readAllGroceryDto();
-    List<GroceryDTO> getGroceryByNameDto(String name);
+    GroceryDTO getByBrand(String brand);
+
+    GroceryDTO getByName(String name);
+
+    List<GroceryDTO>  getByBrandAndName(String name,String brand);
+
+List<GroceryDTO> getByBrandorPrice(String brand,Double peice);
     }

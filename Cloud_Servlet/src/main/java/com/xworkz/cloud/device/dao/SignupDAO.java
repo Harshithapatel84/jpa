@@ -14,21 +14,17 @@ public interface SignupDAO {
 
  List<SignupEntity> readAllSignupEntity();
 
- List<SignupEntity> getSignupById(int id);
+ SignupEntity getSignupByPassword(String password);
 
- List<SignupEntity> getSignupByPassword(String password);
-
- List<SignupEntity> getSignupByEmail(String email);
+ SignupEntity getSignupByEmail(String email);
 
  List<SignupEntity> getSignupByPasswordAndEmail(String password, String email);
 
- boolean updatePasswordById(int id, String password);
+ List<SignupEntity> getSignupByPasswordOrEmail(String password, String email);
 
- boolean updateEmailById(int id, String email);
+ List<SignupEntity> getSignupByPasswordAndConfirmPassword(String password, String confirmPassword);
 
- boolean updateConfirmPasswordById(int id, String confirmPassword);
 
- boolean deleteSignupById(int id);
 
- boolean deleteSignupByEmail(String email);
+
 }

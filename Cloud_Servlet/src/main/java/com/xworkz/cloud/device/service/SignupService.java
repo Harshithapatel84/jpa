@@ -13,11 +13,12 @@ public interface SignupService {
 
     List<SignupDTO> readAllSignupDto();
 
-    List<SignupDTO> getSignupById(Integer id);
+    SignupDTO getSignupByMail(String mail);
 
-    List<SignupDTO> getSignupByPassword(String password);
+    SignupDTO getSignupByPassword(String password);
 
-    List<SignupDTO> getSignupByEmail(String email);
+    List<SignupDTO> getSignupByPasswordAndEmail( String password, String email);
+    List<SignupDTO> getSignupByPasswordOrEmail( String password, String email);
+    List<SignupDTO> getSignupByPasswordAndConfirmPassword( String password, String confirmPassword);
 
-    List<SignupDTO> getSignupByPasswordAndEmail(String password, String email);
-}
+    }

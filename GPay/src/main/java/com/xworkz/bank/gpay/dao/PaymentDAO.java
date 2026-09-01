@@ -14,16 +14,7 @@ public interface PaymentDAO {
 
     List<PaymentEntity> readAllPaymentEntity();
 
-    List<PaymentEntity> getPaymentById(int id);
 
-    boolean updateByName(String senderName);
 
-    boolean updateSenderNameById(Integer id, String senderName);
-
-    boolean updateAmountById(Integer id, Double amount);
-
-    boolean deletePaymentById(Integer id);
-
-    boolean deletePaymentBySenderName(String senderName);
-}
+  }
 

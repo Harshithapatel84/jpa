@@ -61,7 +61,7 @@ return isSaved;
     @Override
     public SignupDTO getById(Integer id) {
         System.out.println("invoking findById:SignupServiceImpl");
-        SignupEntity entity=dao.getByid(id);
+        SignupEntity entity=dao.getById(id);
         if(entity!=null) {
             SignupDTO dto = new SignupDTO();
             dto.setEmail(entity.getEmail());
@@ -89,65 +89,101 @@ return isSaved;
     }
 
     @Override
-    public List<SignupDTO> getSignupById(Integer id) {
-        System.out.println("invoking getSignupById : signupServiceImpl");
-
-        List<SignupEntity> signupEntities = dao.getSignupById(id);
-        List<SignupDTO> signupDTOs = new ArrayList<>();
-        for (SignupEntity entity : signupEntities) {
-            SignupDTO dto = new SignupDTO();
-            dto.setEmail(entity.getEmail());
-            dto.setPassword(entity.getPassword());
-            dto.setConfirmPassword(entity.getConfirmPassword());
-            signupDTOs.add(dto);
-        }
-        return signupDTOs;
+    public SignupDTO getSignupByMail(String mail) {
+        System.out.println("invoking getSignupBymail");
+        SignupDTO dto = null;
+        SignupEntity findBymail = dao.getSignupByEmail(mail);
+        if (findBymail != null) { dto = new SignupDTO( findBymail.getEmail(), findBymail.getPassword(), findBymail.getConfirmPassword() );
+        } return dto;
     }
 
     @Override
-    public List<SignupDTO> getSignupByPassword(String password) {
-        System.out.println("invoking getSignupByPassword : signupServiceImpl");
-        List<SignupEntity> signupEntities = dao.getSignupByPassword(password);
-        List<SignupDTO> signupDTOs = new ArrayList<>();
-        for (SignupEntity entity : signupEntities) {
-            SignupDTO dto = new SignupDTO();
-            dto.setEmail(entity.getEmail());
-            dto.setPassword(entity.getPassword());
-            dto.setConfirmPassword(entity.getConfirmPassword());
-            signupDTOs.add(dto);
-        }
-        return signupDTOs;
-    }
-
-    @Override
-    public List<SignupDTO> getSignupByEmail(String email) {
-        System.out.println("invoking getSignupByEmail : signupServiceImpl");
-        List<SignupEntity> signupEntities = dao.getSignupByEmail(email);
-        List<SignupDTO> signupDTOs = new ArrayList<>();
-        for (SignupEntity entity : signupEntities) {
-            SignupDTO dto = new SignupDTO();
-            dto.setEmail(entity.getEmail());
-            dto.setPassword(entity.getPassword());
-            dto.setConfirmPassword(entity.getConfirmPassword());
-            signupDTOs.add(dto);
-        }
-        return signupDTOs;
+    public SignupDTO getSignupByPassword(String password) {
+        System.out.println("invoking getSignupByPassword");
+        SignupDTO dto = null;
+        SignupEntity findByPassword = dao.getSignupByPassword(password);
+        if (findByPassword != null) { dto = new SignupDTO( findByPassword.getEmail(), findByPassword.getPassword(), findByPassword.getConfirmPassword() );
+        } return dto;
     }
     @Override
     public List<SignupDTO> getSignupByPasswordAndEmail(String password, String email) {
-        System.out.println("invoking getSignupByPasswordAndEmail : signupServiceImpl");
-        List<SignupEntity> signupEntities = dao.getSignupByPasswordAndEmail(password, email);
-        List<SignupDTO> signupDTOs = new ArrayList<>();
-        for (SignupEntity entity : signupEntities) {
-            SignupDTO dto = new SignupDTO();
-            dto.setEmail(entity.getEmail());
-            dto.setPassword(entity.getPassword());
-            dto.setConfirmPassword(entity.getConfirmPassword());
-            signupDTOs.add(dto);
+
+        System.out.println("invoking getSignupByPasswordAndEmail");
+
+        List<SignupEntity> listOfEntity =
+                dao.getSignupByPasswordAndEmail(password, email);
+
+        List<SignupDTO> dto = null;
+
+        if (listOfEntity != null) {
+
+            dto = listOfEntity.stream()
+                    .map(entity -> new SignupDTO(
+                            entity.getEmail(),
+                            entity.getPassword(),
+                            entity.getConfirmPassword()))
+                    .collect(Collectors.toList());
         }
-        return signupDTOs;
+
+        return dto;
+    }
+
+
+    @Override
+    public List<SignupDTO> getSignupByPasswordOrEmail(String password, String email) {
+
+        System.out.println("invoking getSignupByPasswordOrEmail");
+
+        List<SignupEntity> listOfEntity =
+                dao.getSignupByPasswordOrEmail(password, email);
+
+        List<SignupDTO> dto = null;
+
+        if (listOfEntity != null) {
+
+            dto = listOfEntity.stream()
+                    .map(entity -> new SignupDTO(
+                            entity.getEmail(),
+                            entity.getPassword(),
+                            entity.getConfirmPassword()))
+                    .collect(Collectors.toList());
+        }
+
+        return dto;
+    }
+
+
+    @Override
+    public List<SignupDTO> getSignupByPasswordAndConfirmPassword(String password, String confirmPassword) {
+
+        System.out.println("invoking getSignupByPasswordAndConfirmPassword");
+
+        List<SignupEntity> listOfEntity =
+                dao.getSignupByPasswordAndConfirmPassword(
+                        password, confirmPassword);
+
+        List<SignupDTO> dto = null;
+
+        if (listOfEntity != null) {
+
+            dto = listOfEntity.stream()
+                    .map(entity -> new SignupDTO(
+                            entity.getEmail(),
+                            entity.getPassword(),
+                            entity.getConfirmPassword()))
+                    .collect(Collectors.toList());
+        }
+
+        return dto;
     }
 
 }
+
+
+
+
+
+
+
 
 

@@ -127,21 +127,24 @@ e.printStackTrace();
     }
 
     @Override
-    public List<SignupEntity> getSignupById(int id) {
-        System.out.println("invoking getSignupById : SignupDaoImpl");
+    public SignupEntity getSignupByPassword(String password) {
+        System.out.println("invoking getSignupByPassword");
 
-        List<SignupEntity> signupEntityList = Collections.emptyList();
+        SignupEntity signupEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
 
         try {
 
-            signupEntityList = Persistence
-                    .createEntityManagerFactory("cloud")
-                    .createEntityManager()
-                    .createNamedQuery("getSignupById")
-                    .setParameter("id", id)
-                    .getResultList();
+            emf = Persistence.createEntityManagerFactory("cloud");
+            em = emf.createEntityManager();
 
-            System.out.println("listOfEntity:" + signupEntityList);
+            Query query = em.createNamedQuery("getSignupByPassword");
+
+            query.setParameter("password", password);
+            Object obj = query.getSingleResult();
+            signupEntity = (SignupEntity) obj;
 
         } catch (PersistenceException e) {
 
@@ -149,52 +152,183 @@ e.printStackTrace();
 
         } finally {
 
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
         }
 
-        return signupEntityList;
+        return signupEntity;
     }
 
     @Override
-    public List<SignupEntity> getSignupByPassword(String password) {
-        return Collections.emptyList();
+    public SignupEntity getSignupByEmail(String email) {
+        System.out.println("invoking getSignupByEmail");
+
+        SignupEntity signupEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+
+            emf = Persistence.createEntityManagerFactory("cloud");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getSignupByEmail");
+
+            query.setParameter("email", email);
+            Object ref=query.getSingleResult();
+
+            signupEntity = (SignupEntity) ref;
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return signupEntity;
+    }
+    @Override
+    public List<SignupEntity> getSignupByPasswordAndEmail(
+            String password, String email) {
+
+        System.out.println("invoking getSignupByPasswordAndEmail");
+
+        List<SignupEntity> listOfEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+
+            emf = Persistence.createEntityManagerFactory("cloud");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getSignupByPasswordAndEmail");
+            query.setParameter("password", password);
+            query.setParameter("email", email);
+
+            listOfEntity = query.getResultList();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return listOfEntity;
     }
 
-    @Override
-    public List<SignupEntity> getSignupByEmail(String email) {
-        return Collections.emptyList();
-    }
 
     @Override
-    public List<SignupEntity> getSignupByPasswordAndEmail(String password, String email) {
-        return Collections.emptyList();
+    public List<SignupEntity> getSignupByPasswordOrEmail(
+            String password, String email) {
+
+        System.out.println("invoking getSignupByPasswordOrEmail");
+
+        List<SignupEntity> listOfEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+
+            emf = Persistence.createEntityManagerFactory("cloud");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getSignupByPasswordOrEmail");
+            query.setParameter("password", password);
+            query.setParameter("email", email);
+
+            listOfEntity = query.getResultList();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return listOfEntity;
     }
 
-    @Override
-    public boolean updatePasswordById(int id, String password) {
-        return false;
-    }
 
     @Override
-    public boolean updateEmailById(int id, String email) {
-        return false;
+    public List<SignupEntity> getSignupByPasswordAndConfirmPassword(
+            String password, String confirmPassword) {
+
+        System.out.println("invoking getSignupByPasswordAndConfirmPassword");
+
+        List<SignupEntity> listOfEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+
+            emf = Persistence.createEntityManagerFactory("cloud");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getSignupByPasswordAndConfirmPassword");
+
+            query.setParameter("password", password);
+            query.setParameter("confirmPassword", confirmPassword);
+            listOfEntity = query.getResultList();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return listOfEntity;
     }
 
-    @Override
-    public boolean updateConfirmPasswordById(int id, String confirmPassword) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteSignupById(int id) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteSignupByEmail(String email) {
-        return false;
-    }
 
 
 }
+
+
+
 
 

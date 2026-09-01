@@ -29,18 +29,21 @@ public class SignUpRunner {
         List<SignupDTO> readAll=service.readAllSignupDto();
         System.out.println(readAll);
 
-        List<SignupDTO> getById = service.getSignupById(2);
-        System.out.println(getById);
+       SignupDTO dto=service.getSignupByMail("xyz@gmail.com");
+        System.out.println(dto);
 
-        List<SignupDTO> getByPassword = service.getSignupByPassword("test34");
-        System.out.println(getByPassword);
+        SignupDTO dto1=service.getSignupByPassword("xyz34");
+        System.out.println(dto1);
 
-        List<SignupDTO> getByEmail = service.getSignupByEmail("xyz@gmail.com");
-        System.out.println(getByEmail);
-
-        List<SignupDTO> getByPasswordAndEmail = service.getSignupByPasswordAndEmail("avc34", "abcd@gmail.com");
+        List<SignupDTO> getByPasswordAndEmail = service.getSignupByPasswordAndEmail("xyz34", "xyz@gmail.com");
         System.out.println(getByPasswordAndEmail);
 
 
+        List<SignupDTO> getByPasswordOrEmail = service.getSignupByPasswordOrEmail("xyz34", "xyz@gmail.com");
+        System.out.println(getByPasswordOrEmail);
+
+
+        List<SignupDTO> getByPasswordAndConfirmPassword = service.getSignupByPasswordAndConfirmPassword("xyz34", "xyz56");
+        System.out.println(getByPasswordAndConfirmPassword);
     }
 }

@@ -15,7 +15,7 @@ public class GroceryRunner {
 
         GroceryService service = new GroceryServiceImpl();
 
-        //String isSaved = service.save(groceryDTO);
+       // Boolean isSaved = service.save(groceryDTO);
         //System.out.println(isSaved);
 
 
@@ -28,22 +28,30 @@ public class GroceryRunner {
 
         groceryDTOS.add(new GroceryDTO("Sugar", 45.0, "Madhur"));
 
-        //String saved = service.saveAll(groceryDTOS);
+        groceryDTOS.add(new GroceryDTO("soap" ,60.0,"mysore sandal"));
+
+        groceryDTOS.add(new GroceryDTO("wheat flour",70.0,"ashirwad"));
+
+        groceryDTOS.add(new GroceryDTO("rava",45.0,"sooji"));
+
+       // String saved = service.saveAll(groceryDTOS);
         //System.out.println(saved);
-
-
-        GroceryDTO getByName = service.findByname("Rice");
-
-        System.out.println(getByName);
-
 
         List<GroceryDTO> readAll = service.readAllGroceryDto();
         System.out.println(readAll);
 
+        GroceryDTO getByBrand=service.getByBrand("ashirwad");
+        System.out.println(getByBrand);
 
-        List<GroceryDTO> getByGroceryName = service.getGroceryByNameDto("Rice");
+        GroceryDTO getByName=service.getByName("rava");
+        System.out.println(getByName);
 
-        System.out.println(getByGroceryName);
+        List<GroceryDTO> dto=service.getByBrandAndName("soap","mysore sandal");
+        System.out.println(dto);
+
+        List<GroceryDTO> result = service.getByBrandorPrice("Fortune", 150.0);
+        System.out.println(result);
+
 
 
 

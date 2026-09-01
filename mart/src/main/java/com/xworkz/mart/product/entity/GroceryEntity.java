@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 @NamedQueries({
 
-        @NamedQuery(name = "getallgroceryentity", query = "select r from GroceryEntity r"),
+        @NamedQuery(name = "getAllGroceryEntity", query = "select r from GroceryEntity r"),
 
         @NamedQuery(name = "getgrocerybyname", query = "select r from GroceryEntity r where r.name = :name"),
 

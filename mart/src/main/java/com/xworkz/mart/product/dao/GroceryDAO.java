@@ -11,27 +11,15 @@ public interface GroceryDAO {
 
     Boolean saveAll(List<GroceryEntity> groceryEntityList);
 
-    GroceryEntity getGroceryEntitybyName(String name);
-
     List<GroceryEntity> readAllGroceryEntity();
 
-    List<GroceryEntity> getGroceryByName(String name);
+    GroceryEntity getByName(String name);
 
-    List<GroceryEntity> getGroceryByBrand(String brand);
+    GroceryEntity getGroceryByBrand(String brand);
 
-    List<GroceryEntity> getGroceryByNameAndBrand(String name, String brand);
+    List<GroceryEntity> getgrocerybynameandbrand(String name,String brand);
 
-    List<GroceryEntity> getGroceryByBrandOrPrice(String brand, Double price);
-
-    boolean updatePriceByName(Double price, String name);
-
-    boolean updateBrandByName(String brand, String name);
-
-    boolean updatePriceByBrandAndName(Double price, String brand, String name);
-
-    boolean deleteGroceryByName(String name);
-
-    boolean deleteGroceryByBrandOrPrice(String brand, Double price);
+    List<GroceryEntity> getgrocerybybrandorprice(String brand,Double price);
 
 
 }

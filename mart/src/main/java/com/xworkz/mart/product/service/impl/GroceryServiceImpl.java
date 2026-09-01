@@ -8,6 +8,7 @@ import com.xworkz.mart.product.entity.GroceryEntity;
 import com.xworkz.mart.product.service.GroceryService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class GroceryServiceImpl implements GroceryService {
 
         System.out.println("invoking saveGrocery:GroceryServiceImpl");
 
-        String isSaved = null;
+        Boolean isSaved = null;
 
         if (groceryDTO != null) {
 
@@ -34,17 +35,17 @@ public class GroceryServiceImpl implements GroceryService {
             Boolean saved = dao.save(entity);
 
             if (saved) {
-                isSaved = "data saved";
+                isSaved = true;
             } else {
-                isSaved = "data not saved";
+                isSaved = false;
             }
 
         } else {
 
-            isSaved = "data is empty";
+            isSaved = false;
         }
 
-        return false;
+        return isSaved;
     }
 
 
@@ -76,39 +77,17 @@ public class GroceryServiceImpl implements GroceryService {
         return isSaved;
     }
 
-    @Override
-    public GroceryDTO findByname(String name) {
 
-        System.out.println("invoking getGroceryByName:GroceryServiceImpl");
-
-        GroceryEntity entity = dao.getGroceryEntitybyName(name);
-
-        if (entity != null) {
-
-            GroceryDTO dto = new GroceryDTO();
-
-            dto.setName(entity.getName());
-            dto.setPrice(entity.getPrice());
-            dto.setBrand(entity.getBrand());
-
-            return dto;
-        }
-
-        return null;
-    }
 
 
     @Override
     public List<GroceryDTO> readAllGroceryDto() {
 
-        System.out.println(
-                "invoking readAll GroceryDto:GroceryServiceImpl");
+        System.out.println("invoking readAll GroceryDto:GroceryServiceImpl");
 
-        List<GroceryEntity> groceryEntities =
-                dao.readAllGroceryEntity();
+        List<GroceryEntity> groceryEntities = dao.readAllGroceryEntity();
 
-        List<GroceryDTO> groceryDTOs =
-                new ArrayList<>();
+        List<GroceryDTO> groceryDTOs = new ArrayList<>();
 
         for (GroceryEntity entity : groceryEntities) {
 
@@ -123,35 +102,65 @@ public class GroceryServiceImpl implements GroceryService {
 
         return groceryDTOs;
     }
-
 
     @Override
-    public List<GroceryDTO> getGroceryByNameDto(String name) {
-
-        System.out.println(
-                "invoking getGroceryByNameDto:GroceryServiceImpl");
-
-        List<GroceryEntity> groceryEntities =
-                dao.getGroceryByName(name);
-
-        List<GroceryDTO> groceryDTOs =
-                new ArrayList<>();
-
-        for (GroceryEntity entity : groceryEntities) {
-
-            GroceryDTO dto = new GroceryDTO();
-
-            dto.setName(entity.getName());
-            dto.setPrice(entity.getPrice());
-            dto.setBrand(entity.getBrand());
-
-            groceryDTOs.add(dto);
+    public GroceryDTO getByBrand(String brand) {
+        System.out.println("invoking getByBrand");
+        GroceryDTO dto=null;
+        GroceryEntity findbyBrand=dao.getGroceryByBrand(brand);
+        if(findbyBrand!=null){
+            dto=new GroceryDTO(findbyBrand.getBrand(),findbyBrand.getPrice(),findbyBrand.getName());
         }
-
-        return groceryDTOs;
+        return dto;
     }
 
+    @Override
+    public GroceryDTO getByName(String name) {
+        System.out.println("invoking getByName");
+        GroceryDTO dto=null;
+        GroceryEntity finfByName=dao.getByName(name);
+        if (finfByName != null) {
+            dto=new GroceryDTO(finfByName.getBrand(),finfByName.getPrice(),finfByName.getName());
+        }
+        return dto;
+    }
 
+    @Override
+    public List<GroceryDTO> getByBrandAndName(String name, String brand) {
+        System.out.println("invoking getbynameandBrand");
+        List<GroceryDTO> dto=null;
+        List<GroceryEntity> findbynameAndbrand=dao.getgrocerybynameandbrand(name, brand);
+        if(findbynameAndbrand!=null){
+            dto = findbynameAndbrand.stream()
+                    .map(entity -> new GroceryDTO(
+                            entity.getName(),
+                            entity.getPrice(),
+                            entity.getBrand()))
+                    .collect(Collectors.toList());
+        }
+        return dto;
+    }
+
+    @Override
+    public List<GroceryDTO> getByBrandorPrice(String brand, Double price) {
+        System.out.println("invoking getByBrandOrPrice");
+
+        List<GroceryEntity> findByBrandOrPrice =dao.getgrocerybybrandorprice(brand, price);
+
+        List<GroceryDTO> dto = null;
+
+        if (findByBrandOrPrice != null) {
+
+            dto = findByBrandOrPrice.stream()
+                    .map(entity -> new GroceryDTO(
+                            entity.getName(),
+                            entity.getPrice(),
+                            entity.getBrand()))
+                    .collect(Collectors.toList());
+        }
+
+        return dto;
+    }
 
 
 }
