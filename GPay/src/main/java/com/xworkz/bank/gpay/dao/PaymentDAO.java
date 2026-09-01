@@ -14,7 +14,15 @@ public interface PaymentDAO {
 
     List<PaymentEntity> readAllPaymentEntity();
 
+    PaymentEntity getPaymentBySenderName(String senderName);
 
+    PaymentEntity getPaymentByAmount(Double amount);
+
+    List<PaymentEntity> getPaymentBySenderNameAndAmount(String senderName, Double amount);
+
+    List<PaymentEntity> getPaymentBySenderNameOrAmount(String senderName, Double amount);
+
+    List<PaymentEntity> getPaymentByAmountGreaterThan(Double amount);
 
   }
 

@@ -43,9 +43,21 @@ public class PaymentRunner {
         List<PaymentDTO> readAll = service.readAllPaymentDto();
         System.out.println(readAll);
 
+        PaymentDTO getBySenderName = service.getPaymentBySenderName("Harshitha");
+        System.out.println(getBySenderName);
 
-        List<PaymentDTO> getById = service.getPaymentById(2);
-        System.out.println(getById);
+        PaymentDTO getByAmount = service.getPaymentByAmount(500.0);
+        System.out.println(getByAmount);
+
+        List<PaymentDTO> getBySenderNameAndAmount = service.getPaymentBySenderNameAndAmount("Harshitha", 500.0);
+        System.out.println(getBySenderNameAndAmount);
+
+        List<PaymentDTO> getBySenderNameOrAmount = service.getPaymentBySenderNameOrAmount("Harshitha", 500.0);
+        System.out.println(getBySenderNameOrAmount);
+
+        List<PaymentDTO> getByAmountGreaterThan = service.getPaymentByAmountGreaterThan(1000.0);
+        System.out.println(getByAmountGreaterThan);
+
 
 
 

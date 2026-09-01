@@ -14,9 +14,16 @@ public interface PaymentService {
 
     List<PaymentDTO> readAllPaymentDto();
 
-    List<PaymentDTO> getPaymentById(int id);
 
+    PaymentDTO getPaymentBySenderName(String senderName);
 
+    PaymentDTO getPaymentByAmount(Double amount);
+
+    List<PaymentDTO> getPaymentBySenderNameAndAmount(String senderName, Double amount);
+
+    List<PaymentDTO> getPaymentBySenderNameOrAmount(String senderName, Double amount);
+
+    List<PaymentDTO> getPaymentByAmountGreaterThan(Double amount);
 
 
 }

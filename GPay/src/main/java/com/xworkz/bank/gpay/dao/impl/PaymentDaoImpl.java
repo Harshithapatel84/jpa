@@ -179,58 +179,195 @@ public class PaymentDaoImpl implements PaymentDAO {
     }
 
     @Override
-    public List<PaymentEntity> getPaymentById(int id) {
+    public PaymentEntity getPaymentBySenderName(String senderName) {
 
-        System.out.println(
-                "invoking getPaymentById : PaymentDAOImpl");
+        System.out.println("invoking getPaymentBySenderName");
 
-        List<PaymentEntity> paymentEntityList =
-                Collections.emptyList();
+        PaymentEntity paymentEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
 
         try {
 
-            paymentEntityList = Persistence
-                    .createEntityManagerFactory("gpay")
-                    .createEntityManager()
-                    .createNamedQuery("getPaymentById")
-                    .setParameter("id", id)
-                    .getResultList();
+            emf = Persistence.createEntityManagerFactory("gpay");
+            em = emf.createEntityManager();
 
-            System.out.println(
-                    "listOfEntity:" + paymentEntityList);
+            Query query = em.createNamedQuery("getPaymentBySenderName");
+            query.setParameter("senderName", senderName);
+            paymentEntity = (PaymentEntity) query.getSingleResult();
 
         } catch (PersistenceException e) {
 
             e.printStackTrace();
 
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
         }
 
-        return paymentEntityList;
+        return paymentEntity;
     }
-
     @Override
-    public boolean updateByName(String senderName) {
-        return false;
+    public PaymentEntity getPaymentByAmount(Double amount) {
+
+        System.out.println("invoking getPaymentByAmount");
+
+        PaymentEntity paymentEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+
+            emf = Persistence.createEntityManagerFactory("gpay");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getPaymentByAmount");
+
+            query.setParameter("amount", amount);
+
+            paymentEntity =
+                    (PaymentEntity) query.getSingleResult();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return paymentEntity;
     }
-
     @Override
-    public boolean updateSenderNameById(Integer id, String senderName) {
-        return false;
+    public List<PaymentEntity> getPaymentBySenderNameAndAmount(String senderName, Double amount) {
+
+        System.out.println("invoking getPaymentBySenderNameAndAmount");
+
+        List<PaymentEntity> listOfEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+
+            emf = Persistence.createEntityManagerFactory("gpay");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getPaymentBySenderNameAndAmount");
+
+            query.setParameter("senderName", senderName);
+            query.setParameter("amount", amount);
+
+            listOfEntity = query.getResultList();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return listOfEntity;
     }
-
     @Override
-    public boolean updateAmountById(Integer id, Double amount) {
-        return false;
+    public List<PaymentEntity> getPaymentBySenderNameOrAmount(String senderName, Double amount) {
+
+        System.out.println("invoking getPaymentBySenderNameOrAmount");
+
+        List<PaymentEntity> listOfEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+
+            emf = Persistence.createEntityManagerFactory("gpay");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getPaymentBySenderNameOrAmount");
+
+            query.setParameter("senderName", senderName);
+            query.setParameter("amount", amount);
+
+            listOfEntity = query.getResultList();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return listOfEntity;
     }
-
     @Override
-    public boolean deletePaymentById(Integer id) {
-        return false;
-    }
+    public List<PaymentEntity> getPaymentByAmountGreaterThan(Double amount) {
 
-    @Override
-    public boolean deletePaymentBySenderName(String senderName) {
-        return false;
+        System.out.println("invoking getPaymentByAmountGreaterThan");
+
+        List<PaymentEntity> listOfEntity = null;
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+
+        try {
+
+            emf = Persistence.createEntityManagerFactory("gpay");
+            em = emf.createEntityManager();
+
+            Query query = em.createNamedQuery("getPaymentByAmountGreaterThan");
+
+            query.setParameter("amount", amount);
+
+            listOfEntity = query.getResultList();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+
+        return listOfEntity;
     }
 
 }
