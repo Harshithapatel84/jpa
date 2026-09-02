@@ -52,6 +52,15 @@ public class GroceryRunner {
         List<GroceryDTO> result = service.getByBrandorPrice("Fortune", 150.0);
         System.out.println(result);
 
+        String isUpdated=service.updatepricebyname(80.0,"sugar");
+        System.out.println(isUpdated);
+
+        String priceUpdated=service.updatepricebybrandandname(100.0,"ashirwad","wheat flour");
+        System.out.println(priceUpdated);
+
+        String brandUpdated=service.updatebrandbyname("Tata","rava");
+        System.out.println(brandUpdated);
+
 
 
 

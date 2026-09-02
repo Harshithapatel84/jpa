@@ -261,4 +261,117 @@ public class GroceryDaoImpl implements GroceryDAO {
         return groceryEntity;
 
     }
+
+    @Override
+    public Boolean updatepricebyname(Double price,String name) {
+        System.out.println("update price using name");
+        EntityManagerFactory emf=null;
+        EntityManager em=null;
+        EntityTransaction et=null;
+        Boolean isUpdated=false;
+        try{
+            emf=Persistence.createEntityManagerFactory("mart");
+            em=emf.createEntityManager();
+            et=em.getTransaction();
+            et.begin();
+            Query query=em.createQuery("update GroceryEntity r set r.price = :price where r.name = :name");
+            query.setParameter("name",name);
+            query.setParameter("price",price);
+            int rowUpdated=query.executeUpdate();
+            if(rowUpdated>0){
+                isUpdated=true;
+            }
+            et.commit();
+        }catch(PersistenceException e){
+            e.printStackTrace();
+            et.rollback();
+        }finally{
+            if(em!=null){
+                em.close();
+            }
+        }
+
+        return isUpdated;
+    }
+    @Override
+    public Boolean updatepricebybrandandname(Double price, String brand, String name) {
+
+        System.out.println("update price using brand and name");
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+        EntityTransaction et = null;
+
+        Boolean isUpdated = false;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("mart");
+            em = emf.createEntityManager();
+            et = em.getTransaction();
+            et.begin();
+
+            Query query = em.createNamedQuery("updatepricebybrandandname");
+            query.setParameter("price", price);
+            query.setParameter("brand", brand);
+            query.setParameter("name", name);
+            int rowUpdated = query.executeUpdate();
+            if (rowUpdated > 0) {
+                isUpdated = true;
+            }
+            et.commit();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+            if (emf != null) {
+                emf.close();
+            }
+        }
+        return isUpdated;
+    }
+    @Override
+    public Boolean updatebrandbyname(String brand, String name) {
+
+        System.out.println("update brand using name");
+
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+        EntityTransaction et = null;
+        Boolean isUpdated = false;
+        try {
+            emf = Persistence.createEntityManagerFactory("mart");
+            em = emf.createEntityManager();
+            et = em.getTransaction();
+            et.begin();
+            Query query = em.createNamedQuery("updatebrandbyname");
+            query.setParameter("brand", brand);
+            query.setParameter("name", name);
+            int rowUpdated = query.executeUpdate();
+            if (rowUpdated > 0) {
+                isUpdated = true;
+            }
+            et.commit();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+            if (emf != null) {
+                emf.close();
+            }
+        }
+        return isUpdated;
+    }
+
+
 }

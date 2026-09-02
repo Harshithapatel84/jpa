@@ -23,9 +23,8 @@ import javax.persistence.*;
         @NamedQuery(name = "getSignupByPasswordOrEmail", query = "select r from SignupEntity r where r.password = :password or r.email = :email"),
         @NamedQuery(name = "getSignupByPasswordAndConfirmPassword", query = "select r from SignupEntity r where r.password = :password and r.confirmPassword = :confirmPassword"),
         @NamedQuery(name = "updatePasswordById", query = "update SignupEntity r set r.password = :password where r.id = :id"),
-        @NamedQuery(name = "updateEmailById", query = "update SignupEntity r set r.email = :email where r.id = :id"),
-        @NamedQuery(name = "updateConfirmPasswordById", query = "update SignupEntity r set r.confirmPassword = :confirmPassword where r.id = :id"),
-        @NamedQuery(name = "deleteSignupById", query = "delete from SignupEntity r where r.id = :id"),
+        @NamedQuery(name = "updatePasswordConfirmPasswordById", query = "update SignupEntity r set r.password = :password, r.confirmPassword = :confirmPassword where r.id = :id"),
+        @NamedQuery(name = "updatePasswordByEmail", query = "update SignupEntity r set r.password = :password where r.email = :email"),
         @NamedQuery(name = "deleteSignupByEmail", query = "delete from SignupEntity r where r.email = :email")
 })
 

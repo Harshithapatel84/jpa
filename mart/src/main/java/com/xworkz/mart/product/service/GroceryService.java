@@ -19,4 +19,10 @@ public interface GroceryService {
     List<GroceryDTO>  getByBrandAndName(String name,String brand);
 
 List<GroceryDTO> getByBrandorPrice(String brand,Double peice);
+
+     String updatepricebyname (Double price,String name);
+
+    String updatebrandbyname(String brand, String name);
+
+    String updatepricebybrandandname(Double price, String brand, String name);
     }

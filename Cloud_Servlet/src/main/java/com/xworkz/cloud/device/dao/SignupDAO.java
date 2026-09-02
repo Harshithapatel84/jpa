@@ -24,6 +24,12 @@ public interface SignupDAO {
 
  List<SignupEntity> getSignupByPasswordAndConfirmPassword(String password, String confirmPassword);
 
+ Boolean updatePasswordById(String password, int id);
+
+ Boolean updatePasswordConfirmPasswordById(String password, String confirmPassword, int id);
+
+ Boolean updatePasswordByEmail(String password, String email);
+
 
 
 

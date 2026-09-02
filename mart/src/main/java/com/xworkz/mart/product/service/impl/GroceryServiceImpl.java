@@ -162,6 +162,75 @@ public class GroceryServiceImpl implements GroceryService {
         return dto;
     }
 
+    @Override
+    public String updatepricebyname(Double price, String name) {
+        System.out.println("invoking update price by name");
+        String status=null;
+        if(price!=0.0 && name!=null)
+        {
+            Boolean isUpdated=dao.updatepricebyname(price, name);
+            if(isUpdated){
+                status="data updated";
+            }else {
+                status="data not updated";
+            }
+        }
+        return status;
+    }
+    @Override
+    public String updatepricebybrandandname(
+            Double price,
+            String brand,
+            String name) {
+
+        System.out.println("invoking update price by brand and name");
+
+        String status = null;
+
+        if (price != null && price != 0.0
+                && brand != null
+                && name != null) {
+
+            Boolean isUpdated =
+                    dao.updatepricebybrandandname(price, brand, name);
+
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+
+        } else {
+            status = "invalid data";
+        }
+
+        return status;
+    }
+    @Override
+    public String updatebrandbyname(String brand, String name) {
+
+        System.out.println("invoking update brand by name");
+
+        String status = null;
+
+        if (brand != null && name != null) {
+
+            Boolean isUpdated =
+                    dao.updatebrandbyname(brand, name);
+
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+
+        } else {
+            status = "invalid data";
+        }
+
+        return status;
+    }
+
 
 }
 

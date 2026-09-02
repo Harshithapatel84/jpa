@@ -21,5 +21,10 @@ public interface GroceryDAO {
 
     List<GroceryEntity> getgrocerybybrandorprice(String brand,Double price);
 
+    Boolean updatepricebyname(Double price,String name);
+
+    Boolean updatepricebybrandandname(Double price, String brand, String name);
+
+    Boolean updatebrandbyname(String brand, String name);
 
 }
