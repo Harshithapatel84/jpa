@@ -294,14 +294,11 @@ e.printStackTrace();
 
         EntityManagerFactory emf = null;
         EntityManager em = null;
-
         try {
 
             emf = Persistence.createEntityManagerFactory("cloud");
             em = emf.createEntityManager();
-
             Query query = em.createNamedQuery("getSignupByPasswordAndConfirmPassword");
-
             query.setParameter("password", password);
             query.setParameter("confirmPassword", confirmPassword);
             listOfEntity = query.getResultList();
@@ -323,6 +320,123 @@ e.printStackTrace();
 
         return listOfEntity;
     }
+    @Override
+    public Boolean updatePasswordById(String password, int id) {
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+        EntityTransaction et = null;
+        Boolean isUpdated = false;
+        try {
+            emf = Persistence.createEntityManagerFactory("cloud");
+            em = emf.createEntityManager();
+            et = em.getTransaction();
+            et.begin();
+            Query query = em.createNamedQuery("updatePasswordById");
+            query.setParameter("password", password);
+            query.setParameter("id", id);
+            int rowUpdated = query.executeUpdate();
+            if (rowUpdated > 0) {
+                isUpdated = true;
+            }
+            et.commit();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+
+            if (emf != null) {
+                emf.close();
+            }
+        }
+        return isUpdated;
+    }
+
+    @Override
+    public Boolean updatePasswordConfirmPasswordById(String password, String confirmPassword, int id) {
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+        EntityTransaction et = null;
+        Boolean isUpdated = false;
+
+        try {
+            emf = Persistence.createEntityManagerFactory("cloud");
+            em = emf.createEntityManager();
+            et = em.getTransaction();
+            et.begin();
+            Query query = em.createNamedQuery("updatePasswordConfirmPasswordById");
+            query.setParameter("password", password);
+            query.setParameter("confirmPassword", confirmPassword);
+            query.setParameter("id", id);
+            int rowUpdated = query.executeUpdate();
+            if (rowUpdated > 0) {
+                isUpdated = true;
+            }
+            et.commit();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+            if (emf != null) {
+                emf.close();
+            }
+        }
+        return isUpdated;
+
+    }
+
+    @Override
+    public Boolean updatePasswordByEmail(String password, String email) {
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+        EntityTransaction et = null;
+        Boolean isUpdated = false;
+        try {
+            emf = Persistence.createEntityManagerFactory("cloud");
+            em = emf.createEntityManager();
+            et = em.getTransaction();
+            et.begin();
+            Query query = em.createNamedQuery("updatePasswordByEmail");
+            query.setParameter("password", password);
+            query.setParameter("email", email);
+            int rowUpdated = query.executeUpdate();
+            if (rowUpdated > 0) {
+                isUpdated = true;
+            }
+            et.commit();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+
+            if (et != null && et.isActive()) {
+                et.rollback();
+            }
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+            if (emf != null) {
+                emf.close();
+            }
+        }
+        return isUpdated;
+
+
+    }
+
 
 
 

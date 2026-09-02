@@ -45,5 +45,15 @@ public class SignUpRunner {
 
         List<SignupDTO> getByPasswordAndConfirmPassword = service.getSignupByPasswordAndConfirmPassword("xyz34", "xyz56");
         System.out.println(getByPasswordAndConfirmPassword);
+
+        String updateById=service.updatePasswordById("io98",1);
+        System.out.println(updateById);
+
+        String updatePasswordConfirm=service.updatePasswordConfirmPasswordById("io98","io98",1);
+        System.out.println(updatePasswordConfirm);
+
+        String updateByEmail=service.updatePasswordByEmail("yhd@13","xyz@gmail.com");
+        System.out.println(updateByEmail);
+
     }
 }

@@ -176,6 +176,56 @@ return isSaved;
 
         return dto;
     }
+    @Override
+    public String updatePasswordById(String password, int id) {
+        String status = null;
+if (password != null && id > 0) {
+            Boolean isUpdated = dao.updatePasswordById(password, id);
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+        } else {
+            status = "invalid data";
+        }
+        return status;
+}
+
+    @Override
+    public String updatePasswordConfirmPasswordById(String password, String confirmPassword, int id) {
+        String status = null;
+if (password != null && confirmPassword != null && id > 0) {
+            Boolean isUpdated = dao.updatePasswordConfirmPasswordById(password, confirmPassword, id);
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+        } else {
+            status = "invalid data";
+        }
+        return status;
+}
+
+    @Override
+    public String updatePasswordByEmail(String password, String email) {
+        String status = null;
+if (password != null && email != null) {
+            Boolean isUpdated = dao.updatePasswordByEmail(password, email);
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+        } else {
+            status = "invalid data";
+        }
+        return status;
+
+
+    }
+
 
 }
 

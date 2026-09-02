@@ -18,7 +18,16 @@ public interface SignupService {
     SignupDTO getSignupByPassword(String password);
 
     List<SignupDTO> getSignupByPasswordAndEmail( String password, String email);
+
     List<SignupDTO> getSignupByPasswordOrEmail( String password, String email);
+
     List<SignupDTO> getSignupByPasswordAndConfirmPassword( String password, String confirmPassword);
+
+    String updatePasswordById(String password, int id);
+
+    String updatePasswordConfirmPasswordById(String password, String confirmPassword, int id);
+
+    String updatePasswordByEmail(String password, String email);
+
 
     }
