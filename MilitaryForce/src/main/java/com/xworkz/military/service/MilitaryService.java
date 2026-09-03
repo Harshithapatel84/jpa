@@ -13,6 +13,10 @@ public interface MilitaryService {
 
     List<MilitaryDTO> readAllMilitaryDto();
 
+    String updateRankByName(String rank, String name);
 
+    String updateAgeByName(int age, String name);
+
+    String updateRankByNameAndAge(String rank, String name, int age);
 }
 

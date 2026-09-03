@@ -9,20 +9,20 @@ import java.util.List;
 import java.util.Objects;
 
 public class GroceryDaoImpl implements GroceryDAO {
-
+ public static final EntityManagerFactory emf=Persistence.createEntityManagerFactory("mart");
     @Override
     public Boolean save(GroceryEntity entity) {
 
         System.out.println("invoking save groceryImpl");
 
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
         EntityTransaction et = null;
 
         boolean isSaved = false;
 
         try {
-            emf = Persistence.createEntityManagerFactory("mart");
+
             em = emf.createEntityManager();
             et = em.getTransaction();
 
@@ -50,9 +50,7 @@ public class GroceryDaoImpl implements GroceryDAO {
                 em.close();
             }
 
-            if (emf != null) {
-                emf.close();
-            }
+
         }
 
         return isSaved;
@@ -64,13 +62,12 @@ public class GroceryDaoImpl implements GroceryDAO {
 
         System.out.println("Invoking saveAll:GroceryDAOImpl");
 
-        EntityManagerFactory emf = null;
         EntityManager em = null;
         EntityTransaction et = null;
 
         try {
 
-            emf = Persistence.createEntityManagerFactory("mart");
+
             em = emf.createEntityManager();
             et = em.getTransaction();
 
@@ -100,9 +97,7 @@ public class GroceryDaoImpl implements GroceryDAO {
                 em.close();
             }
 
-            if (emf != null) {
-                emf.close();
-            }
+
         }
     }
 
@@ -129,7 +124,6 @@ public class GroceryDaoImpl implements GroceryDAO {
             e.printStackTrace();
 
         } finally {
-
         }
 
         return groceryEntityList;
@@ -139,11 +133,11 @@ public class GroceryDaoImpl implements GroceryDAO {
     public GroceryEntity getByName(String name) {
         System.out.println("invoking grocery by name");
         GroceryEntity groceryEntity = null;
-        EntityManagerFactory emf=null;
+
         EntityManager em=null;
 
         try{
-            emf=Persistence.createEntityManagerFactory("mart");
+
             em=emf.createEntityManager();
             Query query=em.createNamedQuery("getgrocerybyname");
             query.setParameter("name",name);
@@ -155,7 +149,11 @@ public class GroceryDaoImpl implements GroceryDAO {
         {
             e.printStackTrace();
         }
-        finally{}
+        finally{
+            if (em!=null){
+                em.close();
+            }
+        }
         return groceryEntity;
     }
 
@@ -166,12 +164,10 @@ public class GroceryDaoImpl implements GroceryDAO {
         System.out.println("invoking getGroceryByBrand : GroceryDaoImpl");
 
         GroceryEntity groceryEntity = null;
-        EntityManagerFactory emf = null;
         EntityManager em = null;
 
         try {
 
-            emf = Persistence.createEntityManagerFactory("mart");
             em = emf.createEntityManager();
             Query query = em.createNamedQuery("getgrocerybybrand");
             query.setParameter("brand", brand);
@@ -198,12 +194,12 @@ public class GroceryDaoImpl implements GroceryDAO {
         System.out.println("invoking getGroceryByBrandandName : GroceryDaoImpl");
 
         List<GroceryEntity> groceryEntity = null;
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
 
         try {
 
-            emf = Persistence.createEntityManagerFactory("mart");
+
             em = emf.createEntityManager();
             Query query = em.createNamedQuery("getgrocerybynameandbrand");
             query.setParameter("brand",brand);
@@ -229,12 +225,12 @@ public class GroceryDaoImpl implements GroceryDAO {
 
         List<GroceryEntity> groceryEntity = null;
 
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
 
         try {
 
-            emf = Persistence.createEntityManagerFactory("mart");
+
             em = emf.createEntityManager();
 
             Query query = em.createNamedQuery("getgrocerybybrandorprice");
@@ -253,9 +249,6 @@ public class GroceryDaoImpl implements GroceryDAO {
                 em.close();
             }
 
-            if (emf != null) {
-                emf.close();
-            }
         }
 
         return groceryEntity;
@@ -265,12 +258,12 @@ public class GroceryDaoImpl implements GroceryDAO {
     @Override
     public Boolean updatepricebyname(Double price,String name) {
         System.out.println("update price using name");
-        EntityManagerFactory emf=null;
+
         EntityManager em=null;
         EntityTransaction et=null;
         Boolean isUpdated=false;
         try{
-            emf=Persistence.createEntityManagerFactory("mart");
+
             em=emf.createEntityManager();
             et=em.getTransaction();
             et.begin();
@@ -298,14 +291,14 @@ public class GroceryDaoImpl implements GroceryDAO {
 
         System.out.println("update price using brand and name");
 
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
         EntityTransaction et = null;
 
         Boolean isUpdated = false;
 
         try {
-            emf = Persistence.createEntityManagerFactory("mart");
+
             em = emf.createEntityManager();
             et = em.getTransaction();
             et.begin();
@@ -329,9 +322,7 @@ public class GroceryDaoImpl implements GroceryDAO {
             if (em != null) {
                 em.close();
             }
-            if (emf != null) {
-                emf.close();
-            }
+
         }
         return isUpdated;
     }
@@ -340,12 +331,12 @@ public class GroceryDaoImpl implements GroceryDAO {
 
         System.out.println("update brand using name");
 
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
         EntityTransaction et = null;
         Boolean isUpdated = false;
         try {
-            emf = Persistence.createEntityManagerFactory("mart");
+
             em = emf.createEntityManager();
             et = em.getTransaction();
             et.begin();
@@ -366,11 +357,22 @@ public class GroceryDaoImpl implements GroceryDAO {
             if (em != null) {
                 em.close();
             }
-            if (emf != null) {
-                emf.close();
-            }
+
         }
         return isUpdated;
+    }
+
+    @Override
+    public List<String> getNames() {
+        System.out.println("get allThe names");
+        List<String> stringList=Collections.emptyList();
+        try{
+            stringList =emf.createEntityManager()
+                    .createQuery("select s.name from GroceryEntity s").getResultList();
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return stringList;
     }
 
 

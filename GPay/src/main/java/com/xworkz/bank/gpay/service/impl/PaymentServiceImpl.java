@@ -181,5 +181,37 @@ public class PaymentServiceImpl implements PaymentService {
         return dto;
     }
 
+    @Override
+    public String updateSenderNameById(String senderName, int id) {
+        System.out.println("invoking update sender name by id");
+        String status = null;
+        if (senderName != null && id > 0) {
+            Boolean isUpdated = dao.updateSenderNameById(senderName, id);
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+        }
+        return status;
+    }
+
+    @Override
+    public String updateAmountById(Double amount, int id) {
+        System.out.println("invoking update amount by id");
+        String status = null;
+        if (amount != null && amount > 0 && id > 0) {
+            Boolean isUpdated = dao.updateAmountById(amount, id);
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+        } else {
+            status = "invalid data";
+        }
+        return status;
+    }
+
 }
 

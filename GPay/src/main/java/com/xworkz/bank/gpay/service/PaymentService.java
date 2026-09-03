@@ -25,6 +25,9 @@ public interface PaymentService {
 
     List<PaymentDTO> getPaymentByAmountGreaterThan(Double amount);
 
+    String updateSenderNameById(String senderName, int id);
+
+    String updateAmountById(Double amount, int id);
 
 }
 

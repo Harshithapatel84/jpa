@@ -83,7 +83,77 @@ public class MilitaryServiceImpl implements MilitaryService {
         return militaryDTOs;
     }
 
+    @Override
+        public String updateRankByName(String rank, String name) {
+
+
+            System.out.println("invoking update rank by name");
+
+            String status = null;
+
+            if (rank != null && name != null) {
+
+                Boolean isUpdated = dao.updateRankByName(rank, name);
+
+                if (isUpdated) {
+                    status = "data updated";
+                } else {
+                    status = "data not updated";
+                }
+            }
+
+            return status;
+
+
+        }
+    @Override
+    public String updateAgeByName(int age, String name) {
+
+        System.out.println("invoking update age by name");
+
+        String status = null;
+
+        if (age != 0 && name != null) {
+
+            Boolean isUpdated = dao.updateAgeByName(age, name);
+
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+        }
+
+        return status;
+
+    }
+
+    @Override
+    public String updateRankByNameAndAge(String rank, String name, int age) {
+
+        System.out.println("invoking update rank by name and age");
+
+        String status = null;
+
+        if (rank != null && name != null && age != 0) {
+
+            Boolean isUpdated = dao.updateRankByNameAndAge(rank, name, age);
+
+            if (isUpdated) {
+                status = "data updated";
+            } else {
+                status = "data not updated";
+            }
+        }
+
+        return status;
+
+
+    }
 
 
 }
+
+
+
 

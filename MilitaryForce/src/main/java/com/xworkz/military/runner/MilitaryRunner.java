@@ -33,6 +33,14 @@ public class MilitaryRunner {
         System.out.println(readAll);
 
 
+        String updated=service.updateRankByName("Major","Arjun");
+        System.out.println(updated);
+
+        String ageUpdated = service.updateAgeByName(32, "Arjun");
+        System.out.println(ageUpdated);
+
+        String rankUpdated = service.updateRankByNameAndAge("Colonel", "Arjun", 32);
+        System.out.println(rankUpdated);
     }
 }
 

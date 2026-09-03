@@ -27,4 +27,6 @@ public interface GroceryDAO {
 
     Boolean updatebrandbyname(String brand, String name);
 
+    List<String> getNames();
+
 }

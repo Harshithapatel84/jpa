@@ -1,5 +1,7 @@
 package com.xworkz.mart.product.runner;
 
+import com.xworkz.mart.product.dao.GroceryDAO;
+import com.xworkz.mart.product.dao.impl.GroceryDaoImpl;
 import com.xworkz.mart.product.dto.GroceryDTO;
 import com.xworkz.mart.product.service.GroceryService;
 import com.xworkz.mart.product.service.impl.GroceryServiceImpl;
@@ -60,6 +62,12 @@ public class GroceryRunner {
 
         String brandUpdated=service.updatebrandbyname("Tata","rava");
         System.out.println(brandUpdated);
+
+        GroceryDAO groceryDAO = new GroceryDaoImpl();
+
+        List<String> names = groceryDAO.getNames();
+
+        System.out.println(names);
 
 
 

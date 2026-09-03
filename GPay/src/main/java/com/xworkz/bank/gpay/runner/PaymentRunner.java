@@ -58,8 +58,11 @@ public class PaymentRunner {
         List<PaymentDTO> getByAmountGreaterThan = service.getPaymentByAmountGreaterThan(1000.0);
         System.out.println(getByAmountGreaterThan);
 
+        String updateSenderName=service.updateSenderNameById("riya",1);
+        System.out.println(updateSenderName);
 
-
+        String updateAmount=service.updateAmountById(1000.0,2);
+        System.out.println(updateAmount);
 
     }
 }

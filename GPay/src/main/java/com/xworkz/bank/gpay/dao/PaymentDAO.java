@@ -24,5 +24,9 @@ public interface PaymentDAO {
 
     List<PaymentEntity> getPaymentByAmountGreaterThan(Double amount);
 
+    Boolean updateSenderNameById(String senderName, int id);
+
+    Boolean updateAmountById(Double amount, int id);
+
   }
 

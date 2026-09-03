@@ -9,12 +9,13 @@ import java.util.List;
 
 public class MilitaryDaoImpl implements MilitaryDAO {
 
+    public  static  final EntityManagerFactory emf=Persistence.createEntityManagerFactory("military");
     @Override
     public String saveAll(List<MilitaryEntity> militaryEntityList) {
 
         System.out.println("invoking saveAll:MilitaryDAOImpl");
 
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
         EntityTransaction et = null;
 
@@ -22,7 +23,6 @@ public class MilitaryDaoImpl implements MilitaryDAO {
 
         try {
 
-            emf = Persistence.createEntityManagerFactory("military");
             em = emf.createEntityManager();
             et = em.getTransaction();
 
@@ -52,9 +52,7 @@ public class MilitaryDaoImpl implements MilitaryDAO {
                 em.close();
             }
 
-            if (emf != null) {
-                emf.close();
-            }
+
         }
 
         return isSaved;
@@ -65,13 +63,9 @@ public class MilitaryDaoImpl implements MilitaryDAO {
     public MilitaryEntity getById(Integer id) {
 
         System.out.println("invoking getById:MilitaryDAOImpl");
-
-        EntityManagerFactory emf = null;
         EntityManager em = null;
 
         try {
-
-            emf = Persistence.createEntityManagerFactory("military");
             em = emf.createEntityManager();
 
             MilitaryEntity entity =
@@ -91,9 +85,6 @@ public class MilitaryDaoImpl implements MilitaryDAO {
                 em.close();
             }
 
-            if (emf != null) {
-                emf.close();
-            }
         }
     }
 
@@ -103,19 +94,16 @@ public class MilitaryDaoImpl implements MilitaryDAO {
 
         System.out.println("invoking readAll:MilitaryDAOImpl");
 
-        List<MilitaryEntity> militaryEntityList =
-                Collections.emptyList();
+        List<MilitaryEntity> militaryEntityList = Collections.emptyList();
 
         try {
-
             militaryEntityList = Persistence
                     .createEntityManagerFactory("military")
                     .createEntityManager()
-                    .createNamedQuery("getallmilitaryentity")
+                    .createNamedQuery("getAllMilitaryEntity")
                     .getResultList();
 
-            System.out.println(
-                    "listOfEntity:" + militaryEntityList);
+            System.out.println("listOfEntity:" + militaryEntityList);
 
         } catch (PersistenceException e) {
 
@@ -129,64 +117,124 @@ public class MilitaryDaoImpl implements MilitaryDAO {
     }
 
     @Override
-    public List<MilitaryEntity> getMilitaryByName(String name) {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public List<MilitaryEntity> getMilitaryByRank(String rank) {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public List<MilitaryEntity> getMilitaryByAge(Integer age) {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public List<MilitaryEntity> getMilitaryByNameAndRank(String name, String rank) {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public List<MilitaryEntity> getMilitaryByAgeGreaterThan(Integer age) {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public List<MilitaryEntity> getMilitaryByAgeLessThan(Integer age) {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public List<MilitaryEntity> getMilitaryByRankAndAge(String rank, Integer age) {
-        return Collections.emptyList();
-    }
-
-    @Override
     public boolean updateRankByName(String rank, String name) {
-        return false;
+        System.out.println("performing update by rank using name");
+        EntityManager em=null;
+        EntityTransaction et=null;
+        boolean update=false;
+        try{
+            em=emf.createEntityManager();
+            et=em.getTransaction();
+            et.begin();
+            Query query=em.createQuery( "update MilitaryEntity r set r.rank = :rank where r.name = :name");
+query.setParameter("rank",rank);
+query.setParameter("name",name);
+int rowUpdated=query.executeUpdate();
+if(rowUpdated>0){
+    update=true;
+}et.commit();
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        finally {
+            if(em!=null){
+                em.close();
+            }
+        }
+        return update;
     }
 
     @Override
-    public boolean updateAgeByName(Integer age, String name) {
-        return false;
+    public boolean updateAgeByName(int age, String name) {
+
+        System.out.println("performing update age using name");
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+        boolean update = false;
+
+        try {
+
+            em = emf.createEntityManager();
+            et = em.getTransaction();
+
+            et.begin();
+
+            Query query = em.createNamedQuery("updateAgeByName");
+
+            query.setParameter("age", age);
+            query.setParameter("name", name);
+
+            int rowUpdated = query.executeUpdate();
+
+            if (rowUpdated > 0) {
+                update = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return update;
+
+
     }
 
     @Override
-    public boolean updateRankByNameAndAge(String rank, String name, Integer age) {
-        return false;
+    public boolean updateRankByNameAndAge(String rank, String name, int age) {
+
+
+        System.out.println("performing update rank using name and age");
+
+        EntityManager em = null;
+        EntityTransaction et = null;
+        boolean update = false;
+
+        try {
+
+            em = emf.createEntityManager();
+            et = em.getTransaction();
+
+            et.begin();
+
+            Query query = em.createNamedQuery("updateRankByNameAndAge");
+
+            query.setParameter("rank", rank);
+            query.setParameter("name", name);
+            query.setParameter("age", age);
+
+            int rowUpdated = query.executeUpdate();
+
+            if (rowUpdated > 0) {
+                update = true;
+            }
+
+            et.commit();
+
+        } catch (PersistenceException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return update;
+
     }
 
-    @Override
-    public boolean deleteMilitaryByName(String name) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteMilitaryByRankOrAge(String rank, Integer age) {
-        return false;
-    }
 
 
 }
