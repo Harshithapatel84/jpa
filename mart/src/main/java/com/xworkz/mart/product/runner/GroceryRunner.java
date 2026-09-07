@@ -13,7 +13,7 @@ public class GroceryRunner {
 
     public static void main(String[] args) {
 
-        GroceryDTO groceryDTO = new GroceryDTO("Rice", 50.0, "India Gate");
+        GroceryDTO groceryDTO = new GroceryDTO("Rice", 50.0, "India Gate",6.0);
 
         GroceryService service = new GroceryServiceImpl();
 
@@ -21,23 +21,25 @@ public class GroceryRunner {
         //System.out.println(isSaved);
 
 
-        List<GroceryDTO> groceryDTOS =
-                new ArrayList<GroceryDTO>();
+        List<GroceryDTO> groceryDTOS = new ArrayList<GroceryDTO>();
 
-        groceryDTOS.add(new GroceryDTO("Rice", 60.0, "India Gate"));
+       groceryDTOS.add(new GroceryDTO("Rice", 60.0, "India Gate",6.0));
 
-        groceryDTOS.add(new GroceryDTO("Oil", 150.0, "Fortune"));
+       groceryDTOS.add(new GroceryDTO("Oil", 150.0, "Fortune",6.0));
 
-        groceryDTOS.add(new GroceryDTO("Sugar", 45.0, "Madhur"));
+        groceryDTOS.add(new GroceryDTO("Sugar", 45.0, "Madhur",6.0));
 
-        groceryDTOS.add(new GroceryDTO("soap" ,60.0,"mysore sandal"));
+        groceryDTOS.add(new GroceryDTO("soap" ,60.0,"mysore sandal",5.0));
 
-        groceryDTOS.add(new GroceryDTO("wheat flour",70.0,"ashirwad"));
+    groceryDTOS.add(new GroceryDTO("wheat flour",70.0,"ashirwad",3.0));
 
-        groceryDTOS.add(new GroceryDTO("rava",45.0,"sooji"));
+      groceryDTOS.add(new GroceryDTO("rava",45.0,"sooji",4.0));
 
-       // String saved = service.saveAll(groceryDTOS);
-        //System.out.println(saved);
+        groceryDTOS.add(new GroceryDTO(null,0.0,"mayura",9.0));
+
+
+       String saved = service.saveAll(groceryDTOS);
+        System.out.println(saved);
 
         List<GroceryDTO> readAll = service.readAllGroceryDto();
         System.out.println(readAll);
@@ -69,6 +71,8 @@ public class GroceryRunner {
 
         System.out.println(names);
 
+        GroceryDAO dao=new GroceryDaoImpl();
+        dao.updateQuantity();
 
 
 

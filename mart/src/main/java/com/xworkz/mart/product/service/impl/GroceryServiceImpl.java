@@ -58,6 +58,19 @@ public class GroceryServiceImpl implements GroceryService {
 
         if (list != null) {
 
+
+            for (GroceryDTO groceryDTO : list) {
+
+                if (groceryDTO.getName() == null) {
+                    System.out.println("Name cannot be null");
+                    return "data not saved";}
+
+                if (groceryDTO.getPrice() == null) {
+                    System.out.println("Price cannot be null");
+                    return "data not saved";
+                }
+            }
+
             List<GroceryEntity> groceryEntities = list.stream()
                     .map(groceryDTO -> new GroceryEntity(
                             groceryDTO.getName(),
@@ -109,7 +122,7 @@ public class GroceryServiceImpl implements GroceryService {
         GroceryDTO dto=null;
         GroceryEntity findbyBrand=dao.getGroceryByBrand(brand);
         if(findbyBrand!=null){
-            dto=new GroceryDTO(findbyBrand.getBrand(),findbyBrand.getPrice(),findbyBrand.getName());
+            dto=new GroceryDTO(findbyBrand.getBrand(),findbyBrand.getPrice(),findbyBrand.getName(),0.0);
         }
         return dto;
     }
@@ -120,7 +133,7 @@ public class GroceryServiceImpl implements GroceryService {
         GroceryDTO dto=null;
         GroceryEntity finfByName=dao.getByName(name);
         if (finfByName != null) {
-            dto=new GroceryDTO(finfByName.getBrand(),finfByName.getPrice(),finfByName.getName());
+            dto=new GroceryDTO(finfByName.getBrand(),finfByName.getPrice(),finfByName.getName(),0.0);
         }
         return dto;
     }
@@ -135,7 +148,8 @@ public class GroceryServiceImpl implements GroceryService {
                     .map(entity -> new GroceryDTO(
                             entity.getName(),
                             entity.getPrice(),
-                            entity.getBrand()))
+                            entity.getBrand(),
+                            entity.getQuantity()))
                     .collect(Collectors.toList());
         }
         return dto;
@@ -155,7 +169,8 @@ public class GroceryServiceImpl implements GroceryService {
                     .map(entity -> new GroceryDTO(
                             entity.getName(),
                             entity.getPrice(),
-                            entity.getBrand()))
+                            entity.getBrand(),
+                            entity.getQuantity()))
                     .collect(Collectors.toList());
         }
 

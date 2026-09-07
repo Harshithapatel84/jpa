@@ -25,7 +25,9 @@ import javax.persistence.*;
         @NamedQuery(name = "updatePasswordById", query = "update SignupEntity r set r.password = :password where r.id = :id"),
         @NamedQuery(name = "updatePasswordConfirmPasswordById", query = "update SignupEntity r set r.password = :password, r.confirmPassword = :confirmPassword where r.id = :id"),
         @NamedQuery(name = "updatePasswordByEmail", query = "update SignupEntity r set r.password = :password where r.email = :email"),
-        @NamedQuery(name = "deleteSignupByEmail", query = "delete from SignupEntity r where r.email = :email")
+        @NamedQuery(name = "deleteSignupByEmail", query = "delete from SignupEntity r where r.email = :email"),
+@NamedQuery(name = "getStatusToUpdate",query =" select r from  SignupEntity r where r.status is null")
+
 })
 
 public class SignupEntity {
@@ -43,6 +45,9 @@ public class SignupEntity {
 
     @Column(name = "confirm_password")
     private String confirmPassword;
+
+    @Column(name="status")
+    private String status;
 
     public SignupEntity(String email, String password, String confirmPassword) {
         this.email = email;

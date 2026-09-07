@@ -1,9 +1,6 @@
  package com.xworkz.mart.product.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -34,8 +31,9 @@ import javax.persistence.*;
 
         @NamedQuery(name = "deletegrocerybyname", query = "delete from GroceryEntity r where r.name = :name"),
 
-        @NamedQuery(name = "deletegrocerybybrandorprice", query = "delete from GroceryEntity r where r.brand = :brand or r.price = :price")
+        @NamedQuery(name = "deletegrocerybybrandorprice", query = "delete from GroceryEntity r where r.brand = :brand or r.price = :price"),
 
+        @NamedQuery(name="getAllEntityToUpdate",query = "select r from GroceryEntity r where r.quantity is null")
 })
 
 public class GroceryEntity {
@@ -45,14 +43,19 @@ public class GroceryEntity {
     @Column(name = "id")
     private int id;
 
+    @NonNull
     @Column(name = "name")
     private String name;
 
+    @NonNull
     @Column(name = "price")
     private Double price;
 
     @Column(name = "brand")
     private String brand;
+
+    @Column(name = "quantity")
+    private  Double quantity;
 
 
     public GroceryEntity(

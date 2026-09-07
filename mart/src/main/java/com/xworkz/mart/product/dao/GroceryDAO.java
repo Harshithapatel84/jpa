@@ -29,4 +29,6 @@ public interface GroceryDAO {
 
     List<String> getNames();
 
+    Boolean updateQuantity();
+
 }

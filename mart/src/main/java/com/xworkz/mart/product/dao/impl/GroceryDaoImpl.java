@@ -70,9 +70,7 @@ public class GroceryDaoImpl implements GroceryDAO {
 
             em = emf.createEntityManager();
             et = em.getTransaction();
-
             et.begin();
-
             for (GroceryEntity entity : groceryEntityList) {
                 em.persist(entity);
             }
@@ -373,6 +371,36 @@ public class GroceryDaoImpl implements GroceryDAO {
             e.printStackTrace();
         }
         return stringList;
+    }
+
+    @Override
+    public Boolean updateQuantity() {
+        System.out.println("update quantity");
+        EntityManager em=null;
+        Boolean isUpdated=false;
+        EntityTransaction et=null;
+        try{
+            em=emf.createEntityManager();
+            et=em.getTransaction();
+            et.begin();
+            List<GroceryEntity> groceryEntityList=em.createNamedQuery("getAllEntityToUpdate").getResultList();
+            System.out.println(groceryEntityList);
+
+            for(GroceryEntity entity:groceryEntityList){
+                entity.setQuantity(8.0);
+
+            }
+            em.flush();
+            em.clear();
+            et.commit();
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }finally {
+            if(em!=null){
+                em.close();
+            }
+        }
+        return isUpdated;
     }
 
 

@@ -12,5 +12,6 @@ public class GroceryDTO {
     private String name;
     private Double price;
     private String brand;
+    private  Double quantity;
 }
 

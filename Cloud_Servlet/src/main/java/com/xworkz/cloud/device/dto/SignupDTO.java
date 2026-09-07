@@ -10,11 +10,8 @@ import lombok.*;
 @EqualsAndHashCode
 public class SignupDTO {
 
-
     private String email;
     private String password;
     private String confirmPassword;
-
-
-
+    private String status;
 }

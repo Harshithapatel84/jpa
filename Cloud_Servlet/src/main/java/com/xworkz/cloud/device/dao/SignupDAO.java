@@ -30,6 +30,8 @@ public interface SignupDAO {
 
  Boolean updatePasswordByEmail(String password, String email);
 
+ Boolean updateStatus();
+
 
 
 
