@@ -93,7 +93,7 @@ return isSaved;
         System.out.println("invoking getSignupBymail");
         SignupDTO dto = null;
         SignupEntity findBymail = dao.getSignupByEmail(mail);
-        if (findBymail != null) { dto = new SignupDTO( findBymail.getEmail(), findBymail.getPassword(), findBymail.getConfirmPassword() );
+        if (findBymail != null) { dto = new SignupDTO( findBymail.getEmail(), findBymail.getPassword(), findBymail.getConfirmPassword(),"");
         } return dto;
     }
 
@@ -102,7 +102,7 @@ return isSaved;
         System.out.println("invoking getSignupByPassword");
         SignupDTO dto = null;
         SignupEntity findByPassword = dao.getSignupByPassword(password);
-        if (findByPassword != null) { dto = new SignupDTO( findByPassword.getEmail(), findByPassword.getPassword(), findByPassword.getConfirmPassword() );
+        if (findByPassword != null) { dto = new SignupDTO( findByPassword.getEmail(), findByPassword.getPassword(), findByPassword.getConfirmPassword(),"" );
         } return dto;
     }
     @Override
@@ -121,7 +121,8 @@ return isSaved;
                     .map(entity -> new SignupDTO(
                             entity.getEmail(),
                             entity.getPassword(),
-                            entity.getConfirmPassword()))
+                            entity.getConfirmPassword(),
+                            entity.getStatus()))
                     .collect(Collectors.toList());
         }
 
@@ -145,7 +146,8 @@ return isSaved;
                     .map(entity -> new SignupDTO(
                             entity.getEmail(),
                             entity.getPassword(),
-                            entity.getConfirmPassword()))
+                            entity.getConfirmPassword(),
+                            entity.getStatus()))
                     .collect(Collectors.toList());
         }
 
@@ -170,7 +172,8 @@ return isSaved;
                     .map(entity -> new SignupDTO(
                             entity.getEmail(),
                             entity.getPassword(),
-                            entity.getConfirmPassword()))
+                            entity.getConfirmPassword(),
+                            entity.getStatus()))
                     .collect(Collectors.toList());
         }
 

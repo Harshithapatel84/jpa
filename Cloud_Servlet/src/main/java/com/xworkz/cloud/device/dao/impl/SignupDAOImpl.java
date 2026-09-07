@@ -4,10 +4,13 @@ import com.xworkz.cloud.device.dao.SignupDAO;
 import com.xworkz.cloud.device.entity.SignupEntity;
 
 import javax.persistence.*;
+import javax.script.ScriptEngineFactory;
 import java.util.Collections;
 import java.util.List;
 
 public class SignupDAOImpl implements SignupDAO {
+
+    public  static  final EntityManagerFactory emf= Persistence.createEntityManagerFactory("cloud");
     @Override
     public Boolean save(SignupEntity entity) {
         System.out.println("invoking save signupImpl");
@@ -436,6 +439,38 @@ e.printStackTrace();
 
 
     }
+
+    @Override
+    public Boolean updateStatus() {
+        System.out.println("update status");
+        EntityManager em=null;
+        Boolean isUpdated=false;
+        EntityTransaction et=null;
+        try{
+            em=emf.createEntityManager();
+            et=em.getTransaction();
+            et.begin();
+            List<SignupEntity> groceryEntityList=em.createNamedQuery("getStatusToUpdate").getResultList();
+            System.out.println(groceryEntityList);
+
+            for(SignupEntity entity:groceryEntityList){
+                entity.setStatus("saved");
+
+            }
+            em.flush();
+            em.clear();
+            et.commit();
+            isUpdated=true;
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }finally {
+            if(em!=null){
+                em.close();
+            }
+        }
+        return isUpdated;
+    }
+
 
 
 
