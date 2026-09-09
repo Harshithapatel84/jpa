@@ -6,10 +6,13 @@ import com.xworkz.mart.product.dao.impl.GroceryDaoImpl;
 import com.xworkz.mart.product.dto.GroceryDTO;
 import com.xworkz.mart.product.entity.GroceryEntity;
 import com.xworkz.mart.product.service.GroceryService;
+import com.xworkz.mart.product.util.ValidationUtil;
 
+import javax.validation.ConstraintViolation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GroceryServiceImpl implements GroceryService {
@@ -26,23 +29,37 @@ public class GroceryServiceImpl implements GroceryService {
 
         if (groceryDTO != null) {
 
-            GroceryEntity entity = new GroceryEntity();
+            Set<ConstraintViolation<GroceryDTO>> validation = ValidationUtil.getValidator().validate(groceryDTO);
+            System.out.println("constraint validation:" + validation);
 
-            entity.setName(groceryDTO.getName());
-            entity.setPrice(groceryDTO.getPrice());
-            entity.setBrand(groceryDTO.getBrand());
+            if (validation.isEmpty()) {
+                GroceryEntity entity = new GroceryEntity();
 
-            Boolean saved = dao.save(entity);
+                entity.setName(groceryDTO.getName());
+                entity.setPrice(groceryDTO.getPrice());
+                entity.setBrand(groceryDTO.getBrand());
+                entity.setQuantity(groceryDTO.getQuantity());
 
-            if (saved) {
-                isSaved = true;
+                Boolean saved = dao.save(entity);
+
+                if (saved) {
+                    isSaved = true;
+                } else {
+                    isSaved = false;
+                }
+
             } else {
+                for (ConstraintViolation<GroceryDTO> violation : validation) {
+                    System.out.println("properly:" + violation.getPropertyPath());
+                    System.out.println("message:" + violation.getMessage());
+                }
+
+                System.out.println("violation in data");
                 isSaved = false;
             }
-
-        } else {
-
-            isSaved = false;
+        }else {
+            System.out.println("grocery dto is null");
+            isSaved=false;
         }
 
         return isSaved;
