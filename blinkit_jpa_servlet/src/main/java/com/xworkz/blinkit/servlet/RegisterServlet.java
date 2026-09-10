@@ -20,11 +20,6 @@ public class RegisterServlet extends HttpServlet {
 
       System.out.println("register servlet constructor created");
     }
-
-
-
-
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("running doPost");
