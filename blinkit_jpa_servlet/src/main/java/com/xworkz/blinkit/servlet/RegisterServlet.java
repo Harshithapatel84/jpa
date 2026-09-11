@@ -37,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
       String result = service.save(dto);
       System.out.println(result);
 
-        String message=name+" "+"contact was successfully saved";
+        String message=name+" "+"registration was successfully saved";
         System.out.println(message);
 
         req.setAttribute("message",message);
