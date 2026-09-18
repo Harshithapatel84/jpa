@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name="register")
 
-
+@NamedQuery(name="readAllRegister",query = "select e from RegisterEntity e")
 
 public class RegisterEntity {
     @Id

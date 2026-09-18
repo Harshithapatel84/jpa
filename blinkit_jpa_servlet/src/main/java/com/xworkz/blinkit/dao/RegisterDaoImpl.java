@@ -3,8 +3,12 @@ package com.xworkz.blinkit.dao;
 import com.xworkz.blinkit.entity.RegisterEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class RegisterDaoImpl implements RegisterDao{
+
 
     public  static final EntityManagerFactory emf= Persistence.createEntityManagerFactory("register");
     @Override
@@ -35,5 +39,26 @@ public class RegisterDaoImpl implements RegisterDao{
         }
 
         return isSaved;
+    }
+
+    @Override
+    public List<RegisterEntity> readAllRegister() {
+        System.out.println("read all register");
+
+        EntityManagerFactory emf=null;
+        EntityManager em=null;
+
+        List<RegisterEntity> registerEntityList=new ArrayList<>();
+        try {
+            emf = Persistence.createEntityManagerFactory("register");
+            em = emf.createEntityManager();
+          Query query= em.createQuery("select e from RegisterEntity e");
+          registerEntityList=query.getResultList();
+
+            return registerEntityList;
+        }catch (PersistenceException e){
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
     }
 }

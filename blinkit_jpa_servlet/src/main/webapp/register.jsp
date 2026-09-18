@@ -12,6 +12,7 @@
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">Blinkit</span>
         <a href="index.jsp" class="btn btn-primary">Home</a>
+
     </div>
 </nav>
 
@@ -46,7 +47,8 @@
 </form>
 
 <h4>${message}</h4>
-
+<a href="readAll" class="btn btn-success">View All Registers
+</a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 
