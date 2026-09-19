@@ -25,6 +25,7 @@
         <th>PhoneNumber</th>
         <th>Email</th>
         <th>Password</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
@@ -37,6 +38,11 @@
             <td>${register.phNumber}</td>
             <td>${register.email}</td>
             <td>${register.password}</td>
+
+
+            <td>
+            <a href="deleteRegisterById?id=${register.id}">Delete</a>
+            </td>
         </tr>
 
     </c:forEach>

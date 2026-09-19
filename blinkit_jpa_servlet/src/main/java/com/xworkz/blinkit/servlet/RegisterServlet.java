@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.lang.Long.parseLong;
+
 @WebServlet(loadOnStartup = 1,urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
   RegisterService service = new RegisterServiceImpl();
@@ -27,12 +29,17 @@ public class RegisterServlet extends HttpServlet {
       String PhNumber=req.getParameter("PhNumber");
       String Email=req.getParameter("Email");
       String Password=req.getParameter("Password");
+
         System.out.println("name:"+name);
         System.out.println("PhNumber:"+PhNumber);
         System.out.println("Email:"+Email);
         System.out.println("Password:"+Password);
 
-      RegisterDto dto = new RegisterDto(name, Long.parseLong(PhNumber),Email,Password);
+      RegisterDto dto = new RegisterDto();
+              dto.setName(name);
+      dto.setPhNumber(Long.parseLong(PhNumber));
+      dto.setEmail(Email);
+      dto.setPassword(Password);
 
       String result = service.save(dto);
       System.out.println(result);

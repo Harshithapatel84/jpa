@@ -25,7 +25,8 @@ public class RegisterServiceImpl implements RegisterService{
             System.out.println("ref of ConstraintViolation: " + violations);
 
 
-            RegisterEntity entity = new RegisterEntity(dto.getName(),
+            RegisterEntity entity = new RegisterEntity(
+                    dto.getName(),
                     dto.getPhNumber(),
                     dto.getEmail(),
                     dto.getPassword());
@@ -47,6 +48,7 @@ public class RegisterServiceImpl implements RegisterService{
         List<RegisterEntity> entityList=registerDao.readAllRegister();
         if (entityList!=null) {
             return entityList.stream().map(entity->new RegisterDto(
+                    entity.getId(),
                     entity.getName(),
                     entity.getPhNumber(),
                     entity.getEmail(),
@@ -55,6 +57,13 @@ public class RegisterServiceImpl implements RegisterService{
             )).collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public Boolean deleteRegisterById(Integer id) {
+        System.out.println("invoking deleteRegisterById:"+id);
+        return registerDao.deleteRegisterById(id);
+
     }
 
 

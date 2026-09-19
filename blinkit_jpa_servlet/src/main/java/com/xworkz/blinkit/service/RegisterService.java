@@ -11,4 +11,6 @@ public interface RegisterService {
 
     List<RegisterDto> validateAndGetAllRegister();
 
+    Boolean deleteRegisterById(Integer id);
+
 }

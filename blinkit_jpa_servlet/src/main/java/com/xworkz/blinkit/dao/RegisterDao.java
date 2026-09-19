@@ -9,4 +9,6 @@ public interface RegisterDao {
    public boolean save(RegisterEntity entity);
 
     public List<RegisterEntity> readAllRegister();
+
+    Boolean deleteRegisterById(Integer id);
 }

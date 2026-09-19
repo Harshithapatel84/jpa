@@ -61,4 +61,39 @@ public class RegisterDaoImpl implements RegisterDao{
         }
         return Collections.emptyList();
     }
+
+    @Override
+    public Boolean deleteRegisterById(Integer id) {
+        System.out.println("invoking delete by id");
+        Boolean isDelete=false;
+        EntityManager em=null;
+        EntityManagerFactory emf=null;
+        EntityTransaction et=null;
+        try{
+            emf=Persistence.createEntityManagerFactory("register");
+            em=emf.createEntityManager();
+            et=em.getTransaction();
+            et.begin();
+            RegisterEntity registerEntity=em.find(RegisterEntity.class,id);
+            if (registerEntity!=null){
+                em.remove(registerEntity);
+                et.commit();
+                isDelete=true;
+            }
+
+        }catch (PersistenceException e){
+            e.printStackTrace();
+            if (et != null ) {
+                et.rollback();
+            }
+        }finally {
+            if (emf!=null){
+                emf.close();
+            }
+            if(em!=null){
+                em.close();
+            }
+        }
+        return isDelete;
+    }
 }

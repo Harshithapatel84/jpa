@@ -15,6 +15,8 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 public class RegisterDto {
 
+    private int id;
+
     @NotBlank(message = "name is required")
     private String name;
 
